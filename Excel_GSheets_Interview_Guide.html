@@ -1,0 +1,3113 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Excel & Google Sheets — Interview Crash Course | Premium eBook</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&family=Fira+Code:wght@400;500&display=swap');
+
+:root {
+  --primary: #1a237e;
+  --primary-light: #3949ab;
+  --accent: #00bcd4;
+  --accent2: #ff6f00;
+  --accent3: #2e7d32;
+  --accent4: #c62828;
+  --bg: #f8f9ff;
+  --card: #ffffff;
+  --text: #1a1a2e;
+  --text-muted: #5c6bc0;
+  --border: #e8eaf6;
+  --yellow: #fff8e1;
+  --green-bg: #e8f5e9;
+  --blue-bg: #e3f2fd;
+  --red-bg: #ffebee;
+  --purple-bg: #f3e5f5;
+  --orange-bg: #fff3e0;
+  --teal-bg: #e0f7fa;
+  --shadow: 0 4px 20px rgba(26,35,126,0.10);
+  --shadow-lg: 0 8px 40px rgba(26,35,126,0.16);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  font-size: 15px;
+}
+
+/* ===== PRINT / PAGE SETUP ===== */
+@media print {
+  .no-print { display:none; }
+  .page-break { page-break-before: always; }
+  body { background: white; }
+}
+
+/* ===== COVER PAGE ===== */
+.cover {
+  background: linear-gradient(135deg, #0d1b6e 0%, #1a237e 30%, #283593 55%, #1565c0 75%, #0097a7 100%);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.cover-badge {
+  background: linear-gradient(90deg, #ff6f00, #ffa000);
+  color: white;
+  padding: 8px 24px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  box-shadow: 0 4px 15px rgba(255,111,0,0.4);
+}
+
+.cover-icon { font-size: 80px; margin-bottom: 20px; }
+
+.cover h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(28px, 5vw, 52px);
+  font-weight: 900;
+  color: white;
+  line-height: 1.2;
+  margin-bottom: 10px;
+  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
+}
+
+.cover h1 span { color: #00e5ff; }
+
+.cover .subtitle {
+  font-size: clamp(14px, 2vw, 20px);
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 40px;
+  font-weight: 300;
+  letter-spacing: 1px;
+}
+
+.cover-features {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 50px;
+  max-width: 700px;
+}
+
+.cover-feature {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: white;
+  padding: 10px 18px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.cover-stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 50px;
+}
+
+.cover-stat { text-align: center; }
+.cover-stat .num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 42px;
+  font-weight: 900;
+  color: #00e5ff;
+  line-height: 1;
+}
+.cover-stat .lbl {
+  font-size: 12px;
+  color: rgba(255,255,255,0.7);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cover-author {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.25);
+  border-radius: 16px;
+  padding: 20px 40px;
+  color: white;
+}
+.cover-author .name { font-weight: 700; font-size: 16px; }
+.cover-author .role { font-size: 12px; opacity: 0.7; }
+
+.cover-price {
+  position: absolute;
+  top: 30px; right: 30px;
+  background: linear-gradient(135deg, #43a047, #1b5e20);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(67,160,71,0.4);
+}
+.cover-price .original { text-decoration: line-through; font-size: 12px; opacity: 0.7; }
+.cover-price .current { font-size: 22px; font-weight: 900; }
+
+/* ===== MAIN CONTAINER ===== */
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* ===== TOC ===== */
+.toc-page {
+  background: white;
+  padding: 80px 60px;
+  margin: 40px auto;
+  max-width: 960px;
+  border-radius: 20px;
+  box-shadow: var(--shadow-lg);
+}
+
+.toc-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.toc-subtitle { color: var(--text-muted); margin-bottom: 40px; font-size: 14px; }
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.toc-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-radius: 12px;
+  border-left: 4px solid;
+  transition: transform .2s;
+  cursor: pointer;
+}
+.toc-item:hover { transform: translateX(4px); }
+.toc-item .ch-num {
+  background: var(--primary);
+  color: white;
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; font-size: 12px;
+  flex-shrink: 0;
+}
+.toc-item .ch-info { flex: 1; }
+.toc-item .ch-title { font-weight: 600; font-size: 13px; }
+.toc-item .ch-desc { font-size: 11px; color: #666; }
+
+/* Color variants */
+.toc-item.c1  { background: #e8eaf6; border-color: #3949ab; }
+.toc-item.c2  { background: #e3f2fd; border-color: #1976d2; }
+.toc-item.c3  { background: #e8f5e9; border-color: #2e7d32; }
+.toc-item.c4  { background: #fff8e1; border-color: #f57f17; }
+.toc-item.c5  { background: #f3e5f5; border-color: #7b1fa2; }
+.toc-item.c6  { background: #fce4ec; border-color: #c2185b; }
+.toc-item.c7  { background: #e0f7fa; border-color: #00838f; }
+.toc-item.c8  { background: #fff3e0; border-color: #e65100; }
+.toc-item.c9  { background: #e8f5e9; border-color: #388e3c; }
+.toc-item.c10 { background: #e8eaf6; border-color: #5c6bc0; }
+.toc-item.c11 { background: #e3f2fd; border-color: #0288d1; }
+.toc-item.c12 { background: #f3e5f5; border-color: #8e24aa; }
+.toc-item.c13 { background: #fff8e1; border-color: #fbc02d; }
+.toc-item.c14 { background: #ffebee; border-color: #d32f2f; }
+.toc-item.c15 { background: #e0f7fa; border-color: #00acc1; }
+.toc-item.c16 { background: #e8f5e9; border-color: #43a047; }
+.toc-item.c17 { background: #fce4ec; border-color: #e91e63; }
+
+/* ===== CHAPTER SECTIONS ===== */
+.chapter {
+  background: white;
+  margin: 40px auto;
+  max-width: 960px;
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.chapter-header {
+  padding: 50px 60px 40px;
+  position: relative;
+  overflow: hidden;
+}
+
+.chapter-header::after {
+  content: attr(data-emoji);
+  position: absolute;
+  right: 40px; top: 50%;
+  transform: translateY(-50%);
+  font-size: 80px;
+  opacity: 0.15;
+}
+
+.ch-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  opacity: 0.8;
+}
+
+.chapter-header h2 {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(22px, 3vw, 36px);
+  font-weight: 800;
+  color: white;
+  line-height: 1.3;
+}
+
+.chapter-header p {
+  color: rgba(255,255,255,0.8);
+  margin-top: 12px;
+  font-size: 14px;
+  max-width: 600px;
+}
+
+/* Chapter header color themes */
+.ch-blue   { background: linear-gradient(135deg, #1a237e, #1565c0); }
+.ch-green  { background: linear-gradient(135deg, #1b5e20, #2e7d32); }
+.ch-orange { background: linear-gradient(135deg, #bf360c, #e64a19); }
+.ch-purple { background: linear-gradient(135deg, #4a148c, #7b1fa2); }
+.ch-teal   { background: linear-gradient(135deg, #004d40, #00796b); }
+.ch-red    { background: linear-gradient(135deg, #b71c1c, #c62828); }
+.ch-indigo { background: linear-gradient(135deg, #283593, #3949ab); }
+.ch-pink   { background: linear-gradient(135deg, #880e4f, #c2185b); }
+.ch-cyan   { background: linear-gradient(135deg, #006064, #0097a7); }
+.ch-amber  { background: linear-gradient(135deg, #e65100, #f57f17); }
+.ch-dark   { background: linear-gradient(135deg, #212121, #424242); }
+
+.chapter-body { padding: 50px 60px; }
+
+/* ===== COMPONENTS ===== */
+h3 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary);
+  margin: 36px 0 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+h3::before { content: ''; display: inline-block; width: 4px; height: 22px; background: var(--accent); border-radius: 2px; }
+
+h4 {
+  font-size: 16px;
+  font-weight: 700;
+  color: #283593;
+  margin: 24px 0 10px;
+}
+
+p { margin-bottom: 14px; color: #2c2c54; }
+
+/* ===== CALLOUT BOXES ===== */
+.box {
+  border-radius: 14px;
+  padding: 20px 24px;
+  margin: 20px 0;
+  border-left: 5px solid;
+  position: relative;
+}
+.box .box-title {
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.box-info    { background: var(--blue-bg);   border-color: #1976d2; }
+.box-info .box-title { color: #1565c0; }
+
+.box-tip     { background: var(--green-bg);  border-color: #2e7d32; }
+.box-tip .box-title { color: #1b5e20; }
+
+.box-warn    { background: var(--yellow);    border-color: #f9a825; }
+.box-warn .box-title { color: #e65100; }
+
+.box-danger  { background: var(--red-bg);    border-color: #c62828; }
+.box-danger .box-title { color: #b71c1c; }
+
+.box-interview { background: var(--purple-bg); border-color: #7b1fa2; }
+.box-interview .box-title { color: #6a1b9a; }
+
+.box-example { background: var(--teal-bg);  border-color: #0097a7; }
+.box-example .box-title { color: #006064; }
+
+.box-syntax  { background: #1e1e2e; color: #cdd6f4; border-color: #89b4fa; border-radius: 12px; padding: 20px 24px; }
+.box-syntax .box-title { color: #89b4fa; }
+.box-syntax code { font-family: 'Fira Code', monospace; font-size: 14px; color: #a6e3a1; }
+.box-syntax .param { color: #89dceb; }
+.box-syntax .note  { color: #f38ba8; font-size: 12px; }
+
+.box-cheat { background: linear-gradient(135deg, #1a237e 0%, #283593 100%); color: white; border: none; border-radius: 14px; }
+.box-cheat .box-title { color: #90caf9; }
+.box-cheat p, .box-cheat li { color: rgba(255,255,255,0.9); }
+
+/* ===== FORMULA CARD ===== */
+.formula-card {
+  border: 2px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  margin: 24px 0;
+  box-shadow: var(--shadow);
+}
+
+.formula-card-header {
+  background: linear-gradient(135deg, #1a237e, #283593);
+  color: white;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.formula-card-header .fname {
+  font-family: 'Fira Code', monospace;
+  font-size: 22px;
+  font-weight: 700;
+  color: #00e5ff;
+}
+.formula-card-header .ftag {
+  background: rgba(255,255,255,0.15);
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.formula-card-body { padding: 0; }
+
+.formula-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  border-bottom: 1px solid var(--border);
+}
+.formula-row:last-child { border-bottom: none; }
+
+.formula-label {
+  background: #f5f5ff;
+  padding: 14px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary);
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  border-right: 1px solid var(--border);
+}
+
+.formula-value {
+  padding: 14px 18px;
+  font-size: 14px;
+}
+
+.formula-value code {
+  font-family: 'Fira Code', monospace;
+  background: #f0f0ff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  color: #1a237e;
+  font-size: 13px;
+}
+
+/* ===== TABLES ===== */
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  margin: 20px 0;
+  font-size: 13px;
+}
+
+.styled-table thead tr {
+  background: linear-gradient(135deg, #1a237e, #283593);
+  color: white;
+}
+
+.styled-table thead th {
+  padding: 14px 16px;
+  text-align: left;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+}
+
+.styled-table tbody tr:nth-child(even) { background: #f5f5ff; }
+.styled-table tbody tr:hover { background: #e8eaf6; transition: .2s; }
+
+.styled-table tbody td {
+  padding: 12px 16px;
+  border-bottom: 1px solid #e8eaf6;
+  vertical-align: top;
+}
+
+/* ===== SPREADSHEET VISUAL ===== */
+.spreadsheet {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+  font-family: 'Fira Code', monospace;
+  font-size: 13px;
+  margin: 20px 0;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+.ss-toolbar {
+  background: #f1f3f4;
+  padding: 8px 12px;
+  border-bottom: 1px solid #ccc;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: #555;
+  display: flex; gap: 8px;
+}
+.ss-toolbar span { background: #e8eaf6; padding: 3px 8px; border-radius: 4px; }
+
+.ss-header-row {
+  display: grid;
+  background: #f1f3f4;
+  border-bottom: 2px solid #ccc;
+}
+.ss-header-row .ss-row-num { background: #f1f3f4; width: 40px; }
+.ss-col-header {
+  padding: 6px 8px;
+  text-align: center;
+  font-weight: 700;
+  font-size: 12px;
+  color: #555;
+  border-right: 1px solid #ddd;
+  background: #e8eaf6;
+}
+
+.ss-row {
+  display: grid;
+  border-bottom: 1px solid #e0e0e0;
+}
+.ss-row-num {
+  width: 40px;
+  padding: 8px 6px;
+  text-align: center;
+  background: #f1f3f4;
+  border-right: 2px solid #ccc;
+  font-size: 11px;
+  color: #777;
+  font-family: 'Inter', sans-serif;
+}
+.ss-cell {
+  padding: 8px 10px;
+  border-right: 1px solid #e0e0e0;
+  min-width: 80px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.ss-cell.header-cell { font-weight: 700; background: #1a237e; color: white; }
+.ss-cell.formula-cell { color: #1565c0; font-style: italic; }
+.ss-cell.result-cell { background: #e8f5e9; color: #1b5e20; font-weight: 700; }
+.ss-cell.highlight { background: #fff3e0; }
+.ss-cell.active { background: #e3f2fd; border: 2px solid #1976d2; }
+
+/* ===== COMPARISON TABLE (Before/After) ===== */
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin: 20px 0;
+}
+.compare-box {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.compare-box-header {
+  padding: 12px 18px;
+  font-weight: 700;
+  font-size: 13px;
+  color: white;
+}
+.compare-box-body { padding: 16px 18px; font-size: 13px; background: white; }
+
+/* ===== BADGES ===== */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  margin: 2px;
+  letter-spacing: 0.5px;
+}
+.badge-blue   { background: #e3f2fd; color: #1565c0; }
+.badge-green  { background: #e8f5e9; color: #2e7d32; }
+.badge-red    { background: #ffebee; color: #c62828; }
+.badge-orange { background: #fff3e0; color: #e65100; }
+.badge-purple { background: #f3e5f5; color: #6a1b9a; }
+
+/* ===== KEYBOARD SHORTCUT ===== */
+.kbd {
+  display: inline-block;
+  background: #2d2d2d;
+  color: #e0e0e0;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  border-bottom: 3px solid #111;
+  box-shadow: 0 2px 0 #111;
+  margin: 2px;
+}
+.kbd-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 13px;
+}
+.kbd-row .action { flex: 1; color: #333; }
+
+/* ===== INTERVIEW Q&A ===== */
+.qa-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  margin: 16px 0;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+.qa-q {
+  background: linear-gradient(135deg, #e8eaf6, #c5cae9);
+  padding: 14px 20px;
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--primary);
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.qa-q::before {
+  content: 'Q';
+  background: var(--primary);
+  color: white;
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800;
+  flex-shrink: 0;
+}
+.qa-a {
+  padding: 16px 20px;
+  font-size: 14px;
+  background: white;
+  color: #2c2c54;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+.qa-a::before {
+  content: 'A';
+  background: #2e7d32;
+  color: white;
+  width: 26px; height: 26px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 13px; font-weight: 800;
+  flex-shrink: 0;
+}
+
+/* ===== STEP BOX ===== */
+.steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 20px 0;
+}
+.step {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 18px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+.step-num {
+  background: var(--primary);
+  color: white;
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 800;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.step-content { flex: 1; }
+.step-content strong { display: block; font-weight: 700; margin-bottom: 4px; }
+
+/* ===== STATS ROW ===== */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.stat-card {
+  background: white;
+  border-radius: 14px;
+  padding: 20px 16px;
+  text-align: center;
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow);
+}
+.stat-card .stat-icon { font-size: 30px; margin-bottom: 8px; }
+.stat-card .stat-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--primary);
+}
+.stat-card .stat-lbl { font-size: 11px; color: #666; font-weight: 600; }
+
+/* ===== CHART VISUAL ===== */
+.chart-visual {
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin: 20px 0;
+}
+.chart-title { font-weight: 700; font-size: 14px; color: var(--primary); margin-bottom: 16px; }
+.bar-chart { display: flex; flex-direction: column; gap: 8px; }
+.bar-row { display: flex; align-items: center; gap: 12px; font-size: 12px; }
+.bar-label { width: 120px; text-align: right; color: #555; font-weight: 600; }
+.bar-track { flex: 1; background: #f0f0f0; border-radius: 20px; height: 22px; overflow: hidden; }
+.bar-fill { height: 100%; border-radius: 20px; display: flex; align-items: center; padding-left: 10px; color: white; font-size: 11px; font-weight: 700; }
+
+/* ===== PIVOT VISUAL ===== */
+.pivot-box {
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin: 20px 0;
+  box-shadow: var(--shadow);
+}
+.pivot-box-header {
+  background: linear-gradient(90deg, #1a237e, #283593);
+  color: white;
+  padding: 12px 18px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.pivot-zones {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
+}
+.pivot-zone {
+  padding: 16px 18px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+.pivot-zone:nth-child(even) { border-right: none; }
+.pivot-zone-label {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+}
+.zone-filter { background: #fff3e0; color: #e65100; }
+.zone-rows   { background: #e3f2fd; color: #1565c0; }
+.zone-cols   { background: #e8f5e9; color: #2e7d32; }
+.zone-vals   { background: #f3e5f5; color: #6a1b9a; }
+
+.pivot-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  background: #f9f9ff;
+  border-radius: 8px;
+  margin: 4px 0;
+  font-size: 13px;
+  border: 1px solid var(--border);
+}
+.pivot-item::before { content: '☰'; font-size: 10px; color: #999; }
+
+/* ===== SECTION DIVIDER ===== */
+.section-divider {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 40px 0 24px;
+}
+.section-divider::before, .section-divider::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--border));
+}
+.section-divider::before { background: linear-gradient(90deg, transparent, var(--border)); }
+.section-divider::after  { background: linear-gradient(90deg, var(--border), transparent); }
+.section-divider span {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+/* ===== GRID LAYOUTS ===== */
+.grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+/* ===== CHECKLIST ===== */
+.checklist { list-style: none; padding: 0; }
+.checklist li {
+  padding: 8px 0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+}
+.checklist li::before {
+  content: '✅';
+  flex-shrink: 0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .chapter-body { padding: 30px 20px; }
+  .chapter-header { padding: 30px 24px; }
+  .toc-grid, .compare-grid, .grid-2, .grid-3, .pivot-zones { grid-template-columns: 1fr; }
+  .formula-row { grid-template-columns: 1fr; }
+  .toc-page { padding: 40px 24px; }
+  .cover-stats { gap: 20px; }
+  .cover-price { position: static; margin-bottom: 20px; }
+  .kbd-row { flex-wrap: wrap; }
+}
+
+/* ===== UTILITY ===== */
+.emoji { font-size: 20px; }
+.text-center { text-align: center; }
+.mt-20 { margin-top: 20px; }
+.mb-20 { margin-bottom: 20px; }
+.text-muted { color: #666; font-size: 13px; }
+ul, ol { padding-left: 20px; margin-bottom: 14px; }
+li { margin-bottom: 6px; font-size: 14px; }
+strong { color: #1a237e; }
+hr.fancy {
+  border: none;
+  height: 3px;
+  background: linear-gradient(90deg, #1a237e, #00bcd4, #1a237e);
+  border-radius: 3px;
+  margin: 40px 0;
+}
+
+/* ===== FLOW DIAGRAM ===== */
+.flow {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  flex-wrap: wrap;
+  margin: 20px 0;
+  justify-content: center;
+}
+.flow-box {
+  background: white;
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary);
+  text-align: center;
+  min-width: 100px;
+}
+.flow-arrow {
+  color: var(--accent);
+  font-size: 20px;
+  margin: 0 4px;
+  font-weight: 700;
+}
+
+/* ===== CHEAT SHEET ===== */
+.cheat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+.cheat-section {
+  background: white;
+  border: 2px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+.cheat-section-header {
+  padding: 12px 16px;
+  font-weight: 700;
+  font-size: 13px;
+  color: white;
+}
+.cheat-section-body { padding: 12px 16px; }
+.cheat-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 12px;
+  gap: 8px;
+}
+.cheat-item:last-child { border-bottom: none; }
+.cheat-item .func { font-family: 'Fira Code', monospace; color: #1565c0; font-size: 11px; flex: 1; }
+.cheat-item .desc { color: #444; font-size: 11px; text-align: right; }
+
+/* Number highlight */
+.num-highlight {
+  display: inline-block;
+  background: linear-gradient(135deg, #1a237e, #3949ab);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 13px;
+}
+
+/* Practice box */
+.practice-box {
+  background: linear-gradient(135deg, #1b5e20, #2e7d32);
+  border-radius: 14px;
+  padding: 24px;
+  color: white;
+  margin: 20px 0;
+}
+.practice-box h4 { color: #a5d6a7; margin-bottom: 12px; }
+.practice-box ol { padding-left: 20px; }
+.practice-box li { color: rgba(255,255,255,0.9); margin-bottom: 8px; }
+</style>
+</head>
+<body>
+
+<!-- ====================== COVER PAGE ====================== -->
+<div class="cover">
+  <div class="cover-price">
+    <div class="original">₹1,999</div>
+    <div class="current">FREE</div>
+    <div style="font-size:10px;opacity:.8">Premium eBook</div>
+  </div>
+
+  <div class="cover-badge">🏆 Premium Interview Guide 2024–25</div>
+  <div class="cover-icon">📊</div>
+
+  <h1>Excel &amp; Google Sheets<br><span>Interview Crash Course</span></h1>
+  <p class="subtitle">MIS • HR Operations • Recruitment • Data Analyst • Reporting • Admin</p>
+
+  <div class="cover-features">
+    <div class="cover-feature">✅ 17 Chapters</div>
+    <div class="cover-feature">✅ 150+ Interview Q&amp;A</div>
+    <div class="cover-feature">✅ Hinglish Language</div>
+    <div class="cover-feature">✅ Visual Diagrams</div>
+    <div class="cover-feature">✅ Pivot Tables</div>
+    <div class="cover-feature">✅ Cheat Sheets</div>
+    <div class="cover-feature">✅ Practice Tasks</div>
+    <div class="cover-feature">✅ 100+ Shortcuts</div>
+  </div>
+
+  <div class="cover-stats">
+    <div class="cover-stat"><div class="num">50+</div><div class="lbl">Pages</div></div>
+    <div class="cover-stat"><div class="num">150+</div><div class="lbl">Q&amp;A</div></div>
+    <div class="cover-stat"><div class="num">100+</div><div class="lbl">Formulas</div></div>
+    <div class="cover-stat"><div class="num">17</div><div class="lbl">Chapters</div></div>
+  </div>
+
+  <div class="cover-author">
+    <div class="name">🎓 Senior Excel &amp; MIS Trainer</div>
+    <div class="role">15+ Years Experience • MIS • HR Ops • Data Analytics • Instructional Design</div>
+  </div>
+</div>
+
+<!-- ====================== TABLE OF CONTENTS ====================== -->
+<div class="toc-page container">
+  <div style="display:flex;align-items:center;gap:16px;margin-bottom:8px;">
+    <div style="font-size:36px;">📋</div>
+    <div>
+      <div class="toc-title">Table of Contents</div>
+      <div class="toc-subtitle">Ek nazar mein poora course — Click karein aur jump karein</div>
+    </div>
+  </div>
+  <hr class="fancy">
+  <div class="toc-grid">
+    <div class="toc-item c1"><div class="ch-num">1</div><div class="ch-info"><div class="ch-title">📘 Introduction</div><div class="ch-desc">Excel vs Google Sheets, When to use</div></div></div>
+    <div class="toc-item c2"><div class="ch-num">2</div><div class="ch-info"><div class="ch-title">🖥️ Excel Basics</div><div class="ch-desc">Rows, Columns, Cells, References</div></div></div>
+    <div class="toc-item c3"><div class="ch-num">3</div><div class="ch-info"><div class="ch-title">🔢 Basic Formulas</div><div class="ch-desc">SUM, AVERAGE, COUNT, ROUND etc.</div></div></div>
+    <div class="toc-item c4"><div class="ch-num">4</div><div class="ch-info"><div class="ch-title">🔀 Logical Functions</div><div class="ch-desc">IF, IFS, AND, OR, IFERROR</div></div></div>
+    <div class="toc-item c5"><div class="ch-num">5</div><div class="ch-info"><div class="ch-title">🔤 Text Functions</div><div class="ch-desc">LEFT, RIGHT, MID, TRIM, PROPER</div></div></div>
+    <div class="toc-item c6"><div class="ch-num">6</div><div class="ch-info"><div class="ch-title">📅 Date Functions</div><div class="ch-desc">TODAY, DATEDIF, NETWORKDAYS</div></div></div>
+    <div class="toc-item c7"><div class="ch-num">7</div><div class="ch-info"><div class="ch-title">🔍 Lookup Functions</div><div class="ch-desc">VLOOKUP, XLOOKUP, INDEX+MATCH</div></div></div>
+    <div class="toc-item c8"><div class="ch-num">8</div><div class="ch-info"><div class="ch-title">📊 Conditional Functions</div><div class="ch-desc">COUNTIF, SUMIF, AVERAGEIF</div></div></div>
+    <div class="toc-item c9"><div class="ch-num">9</div><div class="ch-info"><div class="ch-title">🌐 Google Sheets Special</div><div class="ch-desc">QUERY, FILTER, IMPORTRANGE</div></div></div>
+    <div class="toc-item c10"><div class="ch-num">10</div><div class="ch-info"><div class="ch-title">📌 Pivot Tables</div><div class="ch-desc">Complete Guide with HR Examples</div></div></div>
+    <div class="toc-item c11"><div class="ch-num">11</div><div class="ch-info"><div class="ch-title">📈 Charts &amp; Graphs</div><div class="ch-desc">Bar, Pie, Line, Dashboard</div></div></div>
+    <div class="toc-item c12"><div class="ch-num">12</div><div class="ch-info"><div class="ch-title">🎨 Formatting &amp; Tools</div><div class="ch-desc">Conditional Formatting, Validation</div></div></div>
+    <div class="toc-item c13"><div class="ch-num">13</div><div class="ch-info"><div class="ch-title">⌨️ Keyboard Shortcuts</div><div class="ch-desc">100+ Excel &amp; Google Sheets</div></div></div>
+    <div class="toc-item c14"><div class="ch-num">14</div><div class="ch-info"><div class="ch-title">⚖️ Excel vs Google Sheets</div><div class="ch-desc">Full Comparison Table</div></div></div>
+    <div class="toc-item c15"><div class="ch-num">15</div><div class="ch-info"><div class="ch-title">💼 Real Company Tasks</div><div class="ch-desc">HR Dashboard, MIS Reports</div></div></div>
+    <div class="toc-item c16"><div class="ch-num">16</div><div class="ch-info"><div class="ch-title">🎯 Interview Questions</div><div class="ch-desc">150+ Q&amp;A with Answers</div></div></div>
+    <div class="toc-item c17"><div class="ch-num">17</div><div class="ch-info"><div class="ch-title">📝 Cheat Sheet &amp; Summary</div><div class="ch-desc">Quick Revision Guide</div></div></div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#e8eaf6,#c5cae9);border-radius:14px;padding:20px;margin-top:30px;display:flex;gap:16px;align-items:center;">
+    <div style="font-size:36px;">💡</div>
+    <div>
+      <strong style="color:#1a237e;">Best Way to Use This eBook:</strong>
+      <p style="margin:6px 0 0;color:#283593;font-size:13px;">Pehle ek baar poora padhein → Phir formulas practice karein → Phir interview questions solve karein → Last mein cheat sheet se revise karein.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 1: INTRODUCTION ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-blue" data-emoji="📘">
+    <div class="ch-label">Chapter 1</div>
+    <h2>Introduction: Excel &amp; Google Sheets</h2>
+    <p>Yeh dono tools kya hain, kab use hote hain, aur aapke liye kyun important hain?</p>
+  </div>
+  <div class="chapter-body">
+
+    <div class="box box-info">
+      <div class="box-title">📌 Yeh Chapter Kyun Padho?</div>
+      <p>Har interview mein pehla sawaal hota hai: <em>"Excel ya Google Sheets mein se aap kya use karte ho aur kyun?"</em> — Yeh chapter aapko perfect answer dega.</p>
+    </div>
+
+    <h3>Excel Kya Hai?</h3>
+    <p><strong>Microsoft Excel</strong> ek spreadsheet software hai jo Microsoft ne banaya hai. Yeh ek paid tool hai jo aapke computer mein install hota hai. Excel bahut powerful hai — bade data sets, complex formulas, aur professional reports banane ke liye use hota hai.</p>
+
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-icon">🏢</div><div class="stat-num">1M+</div><div class="stat-lbl">Rows capacity</div></div>
+      <div class="stat-card"><div class="stat-icon">📊</div><div class="stat-num">400+</div><div class="stat-lbl">Functions</div></div>
+      <div class="stat-card"><div class="stat-icon">💰</div><div class="stat-num">Paid</div><div class="stat-lbl">MS 365 License</div></div>
+      <div class="stat-card"><div class="stat-icon">🖥️</div><div class="stat-num">Offline</div><div class="stat-lbl">Works without net</div></div>
+    </div>
+
+    <h3>Google Sheets Kya Hai?</h3>
+    <p><strong>Google Sheets</strong> ek free online spreadsheet tool hai jo Google ne banaya hai. Iska sabse bada fayda yeh hai ki aap <em>kaheen bhi, kisi bhi device pe</em> use kar sakte ho, aur multiple log ek saath ek file pe kaam kar sakte hain (Real-time Collaboration).</p>
+
+    <div class="stats-row">
+      <div class="stat-card"><div class="stat-icon">🌐</div><div class="stat-num">Free</div><div class="stat-lbl">No cost</div></div>
+      <div class="stat-card"><div class="stat-icon">👥</div><div class="stat-num">Real-time</div><div class="stat-lbl">Collaboration</div></div>
+      <div class="stat-card"><div class="stat-icon">☁️</div><div class="stat-num">Cloud</div><div class="stat-lbl">Auto-save</div></div>
+      <div class="stat-card"><div class="stat-icon">📱</div><div class="stat-num">Mobile</div><div class="stat-lbl">Works on phone</div></div>
+    </div>
+
+    <h3>Excel vs Google Sheets — Quick Comparison</h3>
+    <table class="styled-table">
+      <thead><tr><th>Feature</th><th>📗 Excel</th><th>📘 Google Sheets</th></tr></thead>
+      <tbody>
+        <tr><td>Cost</td><td>Paid (MS Office)</td><td>Free</td></tr>
+        <tr><td>Internet Required</td><td>Nahi (offline)</td><td>Haan (mostly)</td></tr>
+        <tr><td>Collaboration</td><td>Limited</td><td>Real-time, excellent</td></tr>
+        <tr><td>Row Limit</td><td>10,48,576 rows</td><td>50 lakh cells</td></tr>
+        <tr><td>Speed (large data)</td><td>Faster</td><td>Slower on big data</td></tr>
+        <tr><td>Macros / VBA</td><td>Haan (VBA)</td><td>Google Apps Script</td></tr>
+        <tr><td>IMPORTRANGE</td><td>Nahi</td><td>Haan ✅</td></tr>
+        <tr><td>QUERY Function</td><td>Power Query (different)</td><td>Haan ✅</td></tr>
+        <tr><td>Auto Save</td><td>Manual (Ctrl+S)</td><td>Automatic ✅</td></tr>
+        <tr><td>Best For</td><td>Heavy analysis, Finance</td><td>Teams, Startups, Reports</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Companies Kab Kya Use Karti Hain?</h3>
+    <div class="compare-grid">
+      <div class="compare-box">
+        <div class="compare-box-header" style="background:linear-gradient(135deg,#217346,#34a853);">📗 Excel Use Hota Hai Jab...</div>
+        <div class="compare-box-body">
+          <ul>
+            <li>Large datasets ho (lakh+ rows)</li>
+            <li>Confidential data ho — internet nahi chahiye</li>
+            <li>Advanced pivot tables &amp; VBA macros chahiye</li>
+            <li>Finance, Accounts, Banking departments</li>
+            <li>Complex statistical analysis</li>
+            <li>MIS Reports for management</li>
+          </ul>
+        </div>
+      </div>
+      <div class="compare-box">
+        <div class="compare-box-header" style="background:linear-gradient(135deg,#1a73e8,#0d47a1);">📘 Google Sheets Use Hota Hai Jab...</div>
+        <div class="compare-box-body">
+          <ul>
+            <li>Team collaboration chahiye</li>
+            <li>Recruitment tracking (multiple HR log)</li>
+            <li>Startup companies — budget nahi</li>
+            <li>Daily attendance / leave tracking</li>
+            <li>Placement dashboards</li>
+            <li>Data collect karna (Google Forms + Sheets)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Interview Question</div>
+      <strong>Q: "Excel aur Google Sheets mein kya difference hai?"</strong>
+      <p style="margin-top:8px;"><strong>Best Answer:</strong> "Excel ek powerful offline tool hai jo Microsoft Office ka part hai — isme bade datasets aur advanced analysis ke liye best hai. Google Sheets ek free cloud-based tool hai jisme real-time collaboration possible hai — HR, Recruitment aur team tracking ke liye bahut use hota hai. Mujhe dono kaam aate hain, aur main situation ke hisaab se use karta/karti hoon."</p>
+    </div>
+
+    <div class="box box-tip">
+      <div class="box-title">💡 Pro Tip</div>
+      <p>Interview mein hamesha dono tools ka naam lo. Kaho: "Mujhe Excel bhi aata hai aur Google Sheets bhi." — Yeh aapki value badhata hai!</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 2: EXCEL BASICS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-indigo" data-emoji="🖥️">
+    <div class="ch-label">Chapter 2</div>
+    <h2>Excel Basics: Interface aur References</h2>
+    <p>Rows, Columns, Cells, Workbook, Worksheet — sabkuch simple language mein</p>
+  </div>
+  <div class="chapter-body">
+
+    <h3>Excel Interface — Kya Kya Hai?</h3>
+
+    <!-- Visual Spreadsheet Mockup -->
+    <div class="spreadsheet">
+      <div class="ss-toolbar">
+        <span>📁 File</span><span>🏠 Home</span><span>📊 Insert</span><span>📐 Formulas</span><span>📋 Data</span><span>👁 View</span>
+      </div>
+      <div style="background:#e8eaf6;padding:8px 12px;font-size:12px;font-family:monospace;display:flex;gap:16px;border-bottom:1px solid #ccc;">
+        <span style="background:white;border:1px solid #aaa;padding:3px 10px;min-width:80px;text-align:center;">A1</span>
+        <span style="flex:1;background:white;border:1px solid #aaa;padding:3px 10px;">= SUM(B2:B10)</span>
+        <span style="font-size:10px;color:#666;align-self:center;">← Formula Bar</span>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(5,1fr);">
+        <div class="ss-col-header"></div>
+        <div class="ss-col-header">A</div>
+        <div class="ss-col-header">B</div>
+        <div class="ss-col-header">C</div>
+        <div class="ss-col-header">D</div>
+        <div class="ss-col-header">E</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(5,1fr);">
+        <div class="ss-row-num">1</div>
+        <div class="ss-cell header-cell">Employee Name</div>
+        <div class="ss-cell header-cell">Salary</div>
+        <div class="ss-cell header-cell">Department</div>
+        <div class="ss-cell header-cell">Joining Date</div>
+        <div class="ss-cell header-cell">Status</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(5,1fr);">
+        <div class="ss-row-num">2</div>
+        <div class="ss-cell">Rahul Sharma</div>
+        <div class="ss-cell">35000</div>
+        <div class="ss-cell">HR</div>
+        <div class="ss-cell">01-Jan-2023</div>
+        <div class="ss-cell" style="background:#e8f5e9;color:green;">Active</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(5,1fr);">
+        <div class="ss-row-num">3</div>
+        <div class="ss-cell">Priya Patel</div>
+        <div class="ss-cell">42000</div>
+        <div class="ss-cell">Sales</div>
+        <div class="ss-cell">15-Mar-2022</div>
+        <div class="ss-cell" style="background:#e8f5e9;color:green;">Active</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(5,1fr);">
+        <div class="ss-row-num">4</div>
+        <div class="ss-cell">Amit Kumar</div>
+        <div class="ss-cell">28000</div>
+        <div class="ss-cell">Operations</div>
+        <div class="ss-cell">10-Jun-2024</div>
+        <div class="ss-cell" style="background:#ffebee;color:red;">Inactive</div>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <h3>Key Terms Samjho</h3>
+        <table class="styled-table">
+          <thead><tr><th>Term</th><th>Explanation</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Row</strong></td><td>Horizontal line — Numbers se identify hoti hai (1, 2, 3...)</td></tr>
+            <tr><td><strong>Column</strong></td><td>Vertical line — Letters se identify hoti hai (A, B, C...)</td></tr>
+            <tr><td><strong>Cell</strong></td><td>Row + Column ka intersection, jaise A1, B3, C10</td></tr>
+            <tr><td><strong>Range</strong></td><td>Multiple cells ka group, jaise A1:A10 ya B2:D5</td></tr>
+            <tr><td><strong>Workbook</strong></td><td>Poori Excel file (.xlsx) — ek book</td></tr>
+            <tr><td><strong>Worksheet</strong></td><td>Workbook ke andar ek tab (Sheet1, Sheet2)</td></tr>
+            <tr><td><strong>Formula Bar</strong></td><td>Cell ka content dikhata hai — formula ya value</td></tr>
+            <tr><td><strong>Name Box</strong></td><td>Cell ka address dikhata hai (jaise A1)</td></tr>
+            <tr><td><strong>Ribbon</strong></td><td>Top mein tools ka bar (Home, Insert, etc.)</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div>
+        <h3>Cell References — 3 Types</h3>
+        <div class="box box-tip" style="margin-bottom:12px;">
+          <div class="box-title">💡 Relative Reference</div>
+          <p><code>=A1+B1</code> — Jab formula copy karo to reference apne aap change hota hai. Jaise row 2 pe copy kiya to <code>=A2+B2</code> ho jaata hai.</p>
+        </div>
+        <div class="box box-info" style="margin-bottom:12px;">
+          <div class="box-title">📌 Absolute Reference — $ sign</div>
+          <p><code>=$A$1+B1</code> — $ lagane se reference lock ho jaata hai. Copy karne pe $A$1 kabhi nahi badle ga.</p>
+          <p><strong>Shortcut:</strong> Cell select karo → <span class="kbd">F4</span> dabao</p>
+        </div>
+        <div class="box box-warn">
+          <div class="box-title">⚡ Mixed Reference</div>
+          <p><code>=A$1</code> — Row lock, column free<br><code>=$A1</code> — Column lock, row free</p>
+          <p>Multiplication tables banane mein kaam aata hai!</p>
+        </div>
+      </div>
+    </div>
+
+    <h3>References Ka Practical Example</h3>
+    <div class="spreadsheet">
+      <div style="display:grid;grid-template-columns:40px repeat(4,1fr);">
+        <div class="ss-col-header"></div>
+        <div class="ss-col-header">A</div>
+        <div class="ss-col-header">B</div>
+        <div class="ss-col-header">C</div>
+        <div class="ss-col-header">D</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(4,1fr);">
+        <div class="ss-row-num">1</div>
+        <div class="ss-cell header-cell">Employee</div>
+        <div class="ss-cell header-cell">Basic Salary</div>
+        <div class="ss-cell header-cell">Tax Rate (Fixed)</div>
+        <div class="ss-cell header-cell">Tax Amount</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(4,1fr);">
+        <div class="ss-row-num">2</div>
+        <div class="ss-cell">Rahul</div>
+        <div class="ss-cell">35000</div>
+        <div class="ss-cell active">10% → $C$2</div>
+        <div class="ss-cell formula-cell">=B2*$C$2</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(4,1fr);">
+        <div class="ss-row-num">3</div>
+        <div class="ss-cell">Priya</div>
+        <div class="ss-cell">42000</div>
+        <div class="ss-cell" style="background:#e8eaf6;">↑ Same C2</div>
+        <div class="ss-cell formula-cell">=B3*$C$2 ← locked!</div>
+      </div>
+    </div>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Common Interview Questions</div>
+      <div class="qa-card">
+        <div class="qa-q">Absolute aur Relative reference mein kya difference hai?</div>
+        <div class="qa-a">Relative reference copy karne pe change hota hai (A1 → A2), jabki Absolute reference $ sign ki wajah se lock rehta hai ($A$1 hamesha $A$1 rehta hai). Tax rate, commission rate jaise fixed values ke liye $ use karte hain.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-q">Worksheet aur Workbook mein kya antar hai?</div>
+        <div class="qa-a">Workbook poori Excel file hoti hai (.xlsx), jaise ek notebook. Worksheet us notebook ka ek page hota hai (Sheet1, Sheet2). Ek workbook mein maximum 255 worksheets ho sakti hain.</div>
+      </div>
+    </div>
+
+    <div class="box box-warn">
+      <div class="box-title">⚠️ Common Mistake</div>
+      <p>Bahut log $ sign bhool jaate hain aur formula copy karne pe galat results aate hain. Tax, commission ya fixed multiplier use karte waqt hamesha <strong>F4 key se absolute reference</strong> lagao!</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 3: BASIC FORMULAS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-green" data-emoji="🔢">
+    <div class="ch-label">Chapter 3</div>
+    <h2>Basic Formulas — Har Formula Deeply Samjho</h2>
+    <p>SUM se lekar RANDBETWEEN tak — sab kuch real examples ke saath</p>
+  </div>
+  <div class="chapter-body">
+
+    <div class="box box-info">
+      <div class="box-title">📌 Formula Likhne ka Rule</div>
+      <p>Har formula = (equal sign) se shuru hota hai. Jaise: <code>=SUM(A1:A10)</code><br>
+      Agar = nahi likha to Excel use text maan leta hai.</p>
+    </div>
+
+    <!-- SUM -->
+    <div class="formula-card">
+      <div class="formula-card-header">
+        <div class="fname">SUM</div>
+        <div class="ftag">Most Used Formula</div>
+      </div>
+      <div class="formula-card-body">
+        <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Numbers ko jodhta hai (addition karta hai)</div></div>
+        <div class="formula-row"><div class="formula-label">💼 Kab use?</div><div class="formula-value">Total salary, total attendance, total sales nikalne ke liye</div></div>
+        <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=SUM(number1, number2, ...)</code> ya <code>=SUM(A1:A10)</code></div></div>
+        <div class="formula-row"><div class="formula-label">📊 HR Example</div><div class="formula-value"><code>=SUM(B2:B50)</code> → 50 employees ki salary ka total</div></div>
+        <div class="formula-row"><div class="formula-label">🎯 Interview Q</div><div class="formula-value">"SUM aur SUMIF mein kya difference hai?" → SUM sab numbers jodta hai, SUMIF condition ke saath jodta hai</div></div>
+        <div class="formula-row"><div class="formula-label">⚠️ Mistake</div><div class="formula-value">Text cells include karne par SUM unhe ignore karta hai — careful rahein</div></div>
+      </div>
+    </div>
+
+    <!-- AVERAGE -->
+    <div class="formula-card">
+      <div class="formula-card-header">
+        <div class="fname">AVERAGE</div>
+        <div class="ftag">Statistical</div>
+      </div>
+      <div class="formula-card-body">
+        <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Numbers ka average (mean) nikalata hai</div></div>
+        <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=AVERAGE(A1:A10)</code></div></div>
+        <div class="formula-row"><div class="formula-label">📊 HR Example</div><div class="formula-value"><code>=AVERAGE(B2:B20)</code> → Average salary of team</div></div>
+        <div class="formula-row"><div class="formula-label">⚠️ Mistake</div><div class="formula-value">Empty cells ignore hoti hain — zeros count nahi hote. Sahi average ke liye zeros daalo!</div></div>
+      </div>
+    </div>
+
+    <!-- COUNT / COUNTA / COUNTBLANK -->
+    <h4>COUNT, COUNTA, COUNTBLANK</h4>
+    <table class="styled-table">
+      <thead><tr><th>Formula</th><th>Kya Karta Hai?</th><th>Example</th><th>HR Use</th></tr></thead>
+      <tbody>
+        <tr><td><code>COUNT</code></td><td>Sirf numbers count karta hai</td><td><code>=COUNT(A1:A20)</code></td><td>Jinki salary fill hai unhe count karo</td></tr>
+        <tr><td><code>COUNTA</code></td><td>Koi bhi non-empty cell count karta hai</td><td><code>=COUNTA(A1:A20)</code></td><td>Total employees count karo (names)</td></tr>
+        <tr><td><code>COUNTBLANK</code></td><td>Empty cells count karta hai</td><td><code>=COUNTBLANK(A1:A20)</code></td><td>Kitne employees ka data missing hai</td></tr>
+      </tbody>
+    </table>
+
+    <!-- MAX MIN -->
+    <div class="grid-2">
+      <div class="formula-card">
+        <div class="formula-card-header"><div class="fname">MAX</div><div class="ftag">Statistical</div></div>
+        <div class="formula-card-body">
+          <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Sabse badi value dhundta hai</div></div>
+          <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=MAX(A1:A20)</code></div></div>
+          <div class="formula-row"><div class="formula-label">📊 Example</div><div class="formula-value">Highest salary: <code>=MAX(B2:B50)</code></div></div>
+        </div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-card-header"><div class="fname">MIN</div><div class="ftag">Statistical</div></div>
+        <div class="formula-card-body">
+          <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Sabse choti value dhundta hai</div></div>
+          <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=MIN(A1:A20)</code></div></div>
+          <div class="formula-row"><div class="formula-label">📊 Example</div><div class="formula-value">Minimum salary: <code>=MIN(B2:B50)</code></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ROUND family -->
+    <h3>ROUND Family — Number Round Karna</h3>
+    <table class="styled-table">
+      <thead><tr><th>Formula</th><th>Kya Karta Hai?</th><th>Example</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td><code>ROUND(num, digits)</code></td><td>Normal rounding (mathematical)</td><td><code>=ROUND(4567.567, 2)</code></td><td>4567.57</td></tr>
+        <tr><td><code>ROUNDUP(num, digits)</code></td><td>Hamesha upar round karta hai</td><td><code>=ROUNDUP(4567.1, 0)</code></td><td>4568</td></tr>
+        <tr><td><code>ROUNDDOWN(num, digits)</code></td><td>Hamesha neeche round karta hai</td><td><code>=ROUNDDOWN(4567.9, 0)</code></td><td>4567</td></tr>
+        <tr><td><code>INT(num)</code></td><td>Decimal part hata deta hai</td><td><code>=INT(4567.9)</code></td><td>4567</td></tr>
+        <tr><td><code>MOD(num, divisor)</code></td><td>Remainder deta hai</td><td><code>=MOD(17, 5)</code></td><td>2</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box box-example">
+      <div class="box-title">📊 HR Real Use — ROUND</div>
+      <p><strong>Situation:</strong> Employee ka PF calculate karo (Basic × 12%) aur nearest rupee pe round karo.</p>
+      <code style="background:#e0f7fa;padding:8px 12px;border-radius:8px;display:block;margin-top:8px;">=ROUND(B2*12%, 0)  → Nearest rupee mein PF</code>
+    </div>
+
+    <!-- RAND RANDBETWEEN -->
+    <div class="grid-2">
+      <div class="box box-info">
+        <div class="box-title">🎲 RAND()</div>
+        <p>0 se 1 ke beech random decimal deta hai. <br><code>=RAND()</code></p>
+        <p class="text-muted">Use: Dummy data banane ke liye, random sampling</p>
+      </div>
+      <div class="box box-tip">
+        <div class="box-title">🎯 RANDBETWEEN(low, high)</div>
+        <p>Do numbers ke beech random integer deta hai.<br><code>=RANDBETWEEN(1000, 9999)</code></p>
+        <p class="text-muted">Use: Random employee IDs, test data generate karna</p>
+      </div>
+    </div>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Interview Questions — Basic Formulas</div>
+      <div class="qa-card">
+        <div class="qa-q">COUNT aur COUNTA mein kya antar hai?</div>
+        <div class="qa-a">COUNT sirf numbers count karta hai, text ya blank cells ignore karta hai. COUNTA koi bhi non-empty cell count karta hai — chahe text ho, number ho, date ho. Employee names count karne ke liye COUNTA use karte hain.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-q">INT aur ROUNDDOWN mein kya difference hai?</div>
+        <div class="qa-a">Positive numbers ke liye same result aata hai. Lekin negative numbers mein difference hai: INT(-4.7) = -5, jabki ROUNDDOWN(-4.7, 0) = -4. Isliye salary calculations mein ROUNDDOWN safe hai.</div>
+      </div>
+    </div>
+
+    <div class="practice-box">
+      <h4>📝 Practice Questions</h4>
+      <ol>
+        <li>50 employees ki salary ka total aur average nikalo</li>
+        <li>Highest aur lowest salary find karo</li>
+        <li>PF = Basic × 12% — nearest rupee mein calculate karo using ROUND</li>
+        <li>Kitne employees ka joining date fill hai? (COUNTA use karo)</li>
+        <li>Kitne employees ka department missing hai? (COUNTBLANK)</li>
+      </ol>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 4: LOGICAL FUNCTIONS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-orange" data-emoji="🔀">
+    <div class="ch-label">Chapter 4</div>
+    <h2>Logical Functions — Decision Making</h2>
+    <p>IF, IFS, AND, OR, IFERROR — har condition ko handle karo</p>
+  </div>
+  <div class="chapter-body">
+
+    <div class="formula-card">
+      <div class="formula-card-header">
+        <div class="fname">IF</div>
+        <div class="ftag">⭐ Most Important</div>
+      </div>
+      <div class="formula-card-body">
+        <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Ek condition check karta hai — agar true to ek value, agar false to doosri value</div></div>
+        <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=IF(condition, value_if_true, value_if_false)</code></div></div>
+        <div class="formula-row"><div class="formula-label">📊 HR Example</div><div class="formula-value"><code>=IF(B2>=35000,"Senior","Junior")</code> → 35k+ salary wale Senior</div></div>
+        <div class="formula-row"><div class="formula-label">📊 Attendance</div><div class="formula-value"><code>=IF(C2>=80,"Eligible","Not Eligible")</code> → 80% attendance pe eligible</div></div>
+        <div class="formula-row"><div class="formula-label">⚠️ Mistake</div><div class="formula-value">Text hamesha quotes mein likho: <code>"Senior"</code> — quotes na ho to error aata hai</div></div>
+      </div>
+    </div>
+
+    <h3>Nested IF — IF ke andar IF</h3>
+    <div class="box box-warn">
+      <div class="box-title">⚠️ Nested IF Kyun Use Karte Hain?</div>
+      <p>Jab ek se zyada conditions ho. Jaise salary grade A, B, ya C decide karna ho.</p>
+    </div>
+
+    <div class="box box-syntax">
+      <div class="box-title">📝 Nested IF Syntax</div>
+      <code>=IF(B2&gt;=50000,"Grade A",<br>
+      &nbsp;&nbsp;IF(B2&gt;=35000,"Grade B",<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;IF(B2&gt;=20000,"Grade C","Grade D")))</code>
+    </div>
+
+    <div class="spreadsheet">
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr;">
+        <div class="ss-col-header"></div>
+        <div class="ss-col-header">A — Employee</div>
+        <div class="ss-col-header">B — Salary</div>
+        <div class="ss-col-header">C — Grade (Nested IF)</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr;">
+        <div class="ss-row-num">2</div><div class="ss-cell">Rahul</div><div class="ss-cell">55000</div><div class="ss-cell result-cell">Grade A</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr;">
+        <div class="ss-row-num">3</div><div class="ss-cell">Priya</div><div class="ss-cell">38000</div><div class="ss-cell result-cell">Grade B</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr;">
+        <div class="ss-row-num">4</div><div class="ss-cell">Amit</div><div class="ss-cell">22000</div><div class="ss-cell result-cell">Grade C</div>
+      </div>
+    </div>
+
+    <h3>IFS — Nested IF Ka Better Version</h3>
+    <div class="box box-tip">
+      <div class="box-title">💡 IFS Function (Excel 2019+, Google Sheets)</div>
+      <p><code>=IFS(B2&gt;=50000,"Grade A", B2&gt;=35000,"Grade B", B2&gt;=20000,"Grade C", TRUE,"Grade D")</code></p>
+      <p style="margin-top:8px;">Zyada readable hai — sabhi conditions ek line mein. <strong>TRUE</strong> last condition default ke liye use karo.</p>
+    </div>
+
+    <!-- AND OR -->
+    <div class="grid-2">
+      <div class="formula-card">
+        <div class="formula-card-header"><div class="fname">AND</div><div class="ftag">Logical</div></div>
+        <div class="formula-card-body">
+          <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Sabhi conditions true ho tab TRUE return karta hai</div></div>
+          <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=AND(cond1, cond2, ...)</code></div></div>
+          <div class="formula-row"><div class="formula-label">📊 Example</div><div class="formula-value"><code>=IF(AND(B2&gt;=35000, C2="Active"),"Bonus","No Bonus")</code></div></div>
+        </div>
+      </div>
+      <div class="formula-card">
+        <div class="formula-card-header"><div class="fname">OR</div><div class="ftag">Logical</div></div>
+        <div class="formula-card-body">
+          <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Koi bhi ek condition true ho tab TRUE return karta hai</div></div>
+          <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=OR(cond1, cond2, ...)</code></div></div>
+          <div class="formula-row"><div class="formula-label">📊 Example</div><div class="formula-value"><code>=IF(OR(C2="HR",C2="Admin"),"Office","Field")</code></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IFERROR -->
+    <div class="formula-card">
+      <div class="formula-card-header">
+        <div class="fname">IFERROR</div>
+        <div class="ftag">⭐ Error Handler</div>
+      </div>
+      <div class="formula-card-body">
+        <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Agar formula mein error aaye to custom message dikhata hai — #N/A, #DIV/0!, #VALUE! etc. hide karta hai</div></div>
+        <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=IFERROR(formula, "Error message")</code></div></div>
+        <div class="formula-row"><div class="formula-label">📊 Example</div><div class="formula-value"><code>=IFERROR(VLOOKUP(A2,Sheet2!A:B,2,0),"Not Found")</code></div></div>
+        <div class="formula-row"><div class="formula-label">💡 Pro Tip</div><div class="formula-value">VLOOKUP ke saath hamesha IFERROR wrap karo — professional reports mein #N/A dikhna accha nahi lagta</div></div>
+      </div>
+    </div>
+
+    <h3>SWITCH — Multiple Conditions Clean Way</h3>
+    <div class="box box-syntax">
+      <div class="box-title">📝 SWITCH Syntax (Google Sheets &amp; Excel 2019+)</div>
+      <code>=SWITCH(expression, val1, result1, val2, result2, ..., default)</code><br><br>
+      <code>=SWITCH(C2,"HR","Human Resources","IT","Information Tech","Sales","Sales Dept","Other")</code>
+      <div class="note">↑ Department code ko full name mein convert karta hai</div>
+    </div>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Interview Questions</div>
+      <div class="qa-card">
+        <div class="qa-q">IF aur IFS mein kya difference hai?</div>
+        <div class="qa-a">IF mein ek condition check hoti hai, aur nested IF se multiple conditions check karte hain — lekin yeh complex aur error-prone ho jaata hai. IFS ek modern function hai jo multiple conditions ek saath cleanly handle karta hai — zyada readable aur easy to maintain.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-q">IFERROR kyun use karte hain?</div>
+        <div class="qa-a">Jab VLOOKUP ya koi formula error (#N/A, #DIV/0!) deta hai, to IFERROR use karke hum "Not Found" ya "" jaise clean messages dikhate hain. Yeh professional reports ke liye zaroori hai.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 5: TEXT FUNCTIONS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-purple" data-emoji="🔤">
+    <div class="ch-label">Chapter 5</div>
+    <h2>Text Functions — Data Saaf Karo</h2>
+    <p>LEFT, RIGHT, MID, TRIM, PROPER — text ko manage karna sikho</p>
+  </div>
+  <div class="chapter-body">
+
+    <div class="box box-info">
+      <div class="box-title">📌 Text Functions Kyun Important Hain?</div>
+      <p>HR mein bahut baar raw data messy hota hai — extra spaces, wrong case, aadha naam pehle column mein, aadha doosre mein. Text functions se yeh sab theek hota hai.</p>
+    </div>
+
+    <table class="styled-table">
+      <thead><tr><th>Function</th><th>Kya Karta Hai?</th><th>Syntax</th><th>Example</th><th>Result</th></tr></thead>
+      <tbody>
+        <tr><td><strong>LEFT</strong></td><td>Left side se characters lena</td><td><code>=LEFT(text, n)</code></td><td><code>=LEFT("Rahul Sharma",5)</code></td><td>Rahul</td></tr>
+        <tr><td><strong>RIGHT</strong></td><td>Right side se characters lena</td><td><code>=RIGHT(text, n)</code></td><td><code>=RIGHT("MUM-001",3)</code></td><td>001</td></tr>
+        <tr><td><strong>MID</strong></td><td>Beech se characters lena</td><td><code>=MID(text, start, n)</code></td><td><code>=MID("EMP-HR-001",5,2)</code></td><td>HR</td></tr>
+        <tr><td><strong>LEN</strong></td><td>Text ki length/characters</td><td><code>=LEN(text)</code></td><td><code>=LEN("Rahul")</code></td><td>5</td></tr>
+        <tr><td><strong>TRIM</strong></td><td>Extra spaces hatana</td><td><code>=TRIM(text)</code></td><td><code>=TRIM("  Rahul  ")</code></td><td>Rahul</td></tr>
+        <tr><td><strong>CLEAN</strong></td><td>Non-printable characters hatana</td><td><code>=CLEAN(text)</code></td><td>Copied text clean karna</td><td>Clean text</td></tr>
+        <tr><td><strong>UPPER</strong></td><td>UPPERCASE karna</td><td><code>=UPPER(text)</code></td><td><code>=UPPER("rahul")</code></td><td>RAHUL</td></tr>
+        <tr><td><strong>LOWER</strong></td><td>lowercase karna</td><td><code>=LOWER(text)</code></td><td><code>=LOWER("RAHUL")</code></td><td>rahul</td></tr>
+        <tr><td><strong>PROPER</strong></td><td>First letter capital karna</td><td><code>=PROPER(text)</code></td><td><code>=PROPER("rahul sharma")</code></td><td>Rahul Sharma</td></tr>
+        <tr><td><strong>SUBSTITUTE</strong></td><td>Ek word ko doosre se replace karna</td><td><code>=SUBSTITUTE(text,old,new)</code></td><td><code>=SUBSTITUTE(A1,"Mr.","Shri")</code></td><td>Mr. replace hoga</td></tr>
+        <tr><td><strong>CONCAT / TEXTJOIN</strong></td><td>Cells ko jodhna</td><td><code>=TEXTJOIN(" ",TRUE,A1,B1)</code></td><td>First + Last name jodhna</td><td>Full Name</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Practical Examples</h3>
+
+    <div class="spreadsheet">
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;">
+        <div class="ss-col-header"></div>
+        <div class="ss-col-header">A — Raw Name</div>
+        <div class="ss-col-header">B — TRIM</div>
+        <div class="ss-col-header">C — PROPER</div>
+        <div class="ss-col-header">D — UPPER</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;">
+        <div class="ss-row-num">2</div>
+        <div class="ss-cell" style="color:red;">  rahul sharma  </div>
+        <div class="ss-cell formula-cell">=TRIM(A2)</div>
+        <div class="ss-cell formula-cell">=PROPER(B2)</div>
+        <div class="ss-cell result-cell">RAHUL SHARMA</div>
+      </div>
+    </div>
+
+    <h3>Employee ID Extract Karna — MID + LEFT + RIGHT</h3>
+    <div class="box box-example">
+      <div class="box-title">📊 Real Scenario</div>
+      <p>Employee ID format: <strong>MUM-HR-2024-001</strong><br>
+      Aapko alag alag parts chahiye:</p>
+      <table class="styled-table" style="margin-top:12px;">
+        <thead><tr><th>Kya Chahiye</th><th>Formula</th><th>Result</th></tr></thead>
+        <tbody>
+          <tr><td>City Code (MUM)</td><td><code>=LEFT(A2, 3)</code></td><td>MUM</td></tr>
+          <tr><td>Department (HR)</td><td><code>=MID(A2, 5, 2)</code></td><td>HR</td></tr>
+          <tr><td>Year (2024)</td><td><code>=MID(A2, 8, 4)</code></td><td>2024</td></tr>
+          <tr><td>Serial No (001)</td><td><code>=RIGHT(A2, 3)</code></td><td>001</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>FIND vs SEARCH — Difference</h3>
+    <table class="styled-table">
+      <thead><tr><th>Feature</th><th>FIND</th><th>SEARCH</th></tr></thead>
+      <tbody>
+        <tr><td>Case Sensitive?</td><td>✅ Haan — A ≠ a</td><td>❌ Nahi — A = a</td></tr>
+        <tr><td>Wildcards?</td><td>❌ Nahi</td><td>✅ Haan (* ?)</td></tr>
+        <tr><td>Result</td><td>Position number</td><td>Position number</td></tr>
+        <tr><td>Use</td><td>Exact search</td><td>General search</td></tr>
+      </tbody>
+    </table>
+
+    <h3>REGEXMATCH, REGEXEXTRACT, REGEXREPLACE (Google Sheets)</h3>
+    <div class="box box-tip">
+      <div class="box-title">💡 REGEX Functions (Google Sheets Only)</div>
+      <table class="styled-table">
+        <thead><tr><th>Function</th><th>Use</th><th>Example</th></tr></thead>
+        <tbody>
+          <tr><td><code>REGEXMATCH</code></td><td>Pattern match check karna</td><td><code>=REGEXMATCH(A2,"[0-9]+")</code> → Number hai ya nahi</td></tr>
+          <tr><td><code>REGEXEXTRACT</code></td><td>Pattern se data extract karna</td><td><code>=REGEXEXTRACT(A2,"\d{10}")</code> → 10 digit phone extract</td></tr>
+          <tr><td><code>REGEXREPLACE</code></td><td>Pattern replace karna</td><td><code>=REGEXREPLACE(A2,"[^a-zA-Z]","")</code> → Non-letters hatao</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Interview Questions</div>
+      <div class="qa-card">
+        <div class="qa-q">TRIM function kab use karte hain?</div>
+        <div class="qa-a">Jab data kisi system se copy-paste kiya ho ya Google Forms se aaya ho — usme extra spaces hote hain. TRIM se leading, trailing aur extra middle spaces hat jaate hain. VLOOKUP galat result de raha ho tab bhi TRIM lagao — aksar spaces ki wajah se hota hai.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-q">CONCATENATE aur TEXTJOIN mein kya difference hai?</div>
+        <div class="qa-a">CONCATENATE sirf cells jodta hai bina separator ke. TEXTJOIN mein aap separator define kar sakte ho (jaise space ya comma) aur empty cells ignore karne ka option bhi hai. Modern Excel mein TEXTJOIN prefer karein.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 6: DATE FUNCTIONS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-pink" data-emoji="📅">
+    <div class="ch-label">Chapter 6</div>
+    <h2>Date Functions — Dates Ke Saath Kaam Karo</h2>
+    <p>TODAY, DATEDIF, NETWORKDAYS — HR ka most used date toolkit</p>
+  </div>
+  <div class="chapter-body">
+
+    <table class="styled-table">
+      <thead><tr><th>Function</th><th>Kya Karta Hai?</th><th>Syntax</th><th>HR Use</th></tr></thead>
+      <tbody>
+        <tr><td><strong>TODAY()</strong></td><td>Aaj ki date</td><td><code>=TODAY()</code></td><td>Current date, age calculation</td></tr>
+        <tr><td><strong>NOW()</strong></td><td>Current date + time</td><td><code>=NOW()</code></td><td>Timestamp, last updated</td></tr>
+        <tr><td><strong>DATE</strong></td><td>Date banana</td><td><code>=DATE(year,month,day)</code></td><td>Custom date create karna</td></tr>
+        <tr><td><strong>DAY</strong></td><td>Date ka din nikalna</td><td><code>=DAY(A2)</code></td><td>Birth day, joining day</td></tr>
+        <tr><td><strong>MONTH</strong></td><td>Month number</td><td><code>=MONTH(A2)</code></td><td>Monthly reports</td></tr>
+        <tr><td><strong>YEAR</strong></td><td>Year nikalna</td><td><code>=YEAR(A2)</code></td><td>Annual reports, experience</td></tr>
+        <tr><td><strong>WEEKDAY</strong></td><td>Day of week (1=Sun...7=Sat)</td><td><code>=WEEKDAY(A2, 2)</code></td><td>Weekend check</td></tr>
+        <tr><td><strong>EOMONTH</strong></td><td>Month ki last date</td><td><code>=EOMONTH(TODAY(),0)</code></td><td>Month-end reports</td></tr>
+        <tr><td><strong>NETWORKDAYS</strong></td><td>Working days count</td><td><code>=NETWORKDAYS(start,end)</code></td><td>Employee working days</td></tr>
+        <tr><td><strong>WORKDAY</strong></td><td>N working days baad ki date</td><td><code>=WORKDAY(start,n)</code></td><td>Notice period end date</td></tr>
+        <tr><td><strong>DATEDIF</strong></td><td>Difference in years/months/days</td><td><code>=DATEDIF(start,end,"Y")</code></td><td>Experience, tenure calculate</td></tr>
+      </tbody>
+    </table>
+
+    <h3>DATEDIF — Most Important for HR</h3>
+    <div class="formula-card">
+      <div class="formula-card-header">
+        <div class="fname">DATEDIF</div>
+        <div class="ftag">⭐ HR Favorite</div>
+      </div>
+      <div class="formula-card-body">
+        <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Do dates ke beech ka difference calculate karta hai — years, months ya days mein</div></div>
+        <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=DATEDIF(start_date, end_date, unit)</code></div></div>
+        <div class="formula-row"><div class="formula-label">Units</div><div class="formula-value"><strong>"Y"</strong> = Years | <strong>"M"</strong> = Months | <strong>"D"</strong> = Days | <strong>"YM"</strong> = Months (after full years) | <strong>"MD"</strong> = Days (after full months)</div></div>
+        <div class="formula-row"><div class="formula-label">📊 Experience</div><div class="formula-value"><code>=DATEDIF(B2, TODAY(), "Y") &amp; " Years " &amp; DATEDIF(B2, TODAY(), "YM") &amp; " Months"</code></div></div>
+        <div class="formula-row"><div class="formula-label">📊 Age</div><div class="formula-value"><code>=DATEDIF(C2, TODAY(), "Y") &amp; " Years Old"</code></div></div>
+        <div class="formula-row"><div class="formula-label">⚠️ Mistake</div><div class="formula-value">Start date hamesha end date se pehle honi chahiye — warna error aata hai!</div></div>
+      </div>
+    </div>
+
+    <div class="spreadsheet">
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;">
+        <div class="ss-col-header"></div>
+        <div class="ss-col-header">A</div>
+        <div class="ss-col-header">B — Joining</div>
+        <div class="ss-col-header">C — Today</div>
+        <div class="ss-col-header">D — Experience</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;">
+        <div class="ss-row-num">2</div>
+        <div class="ss-cell">Rahul</div>
+        <div class="ss-cell">01-Jan-2020</div>
+        <div class="ss-cell formula-cell">=TODAY()</div>
+        <div class="ss-cell result-cell">4 Years 6 Months</div>
+      </div>
+    </div>
+
+    <h3>NETWORKDAYS — Leave aur Working Days</h3>
+    <div class="box box-example">
+      <div class="box-title">📊 Real HR Use</div>
+      <p><strong>Situation:</strong> Employee ne 1-Jan se 31-Jan tak kaam kiya. Kitne working days hain?</p>
+      <code style="display:block;background:#e0f7fa;padding:10px;border-radius:8px;margin:8px 0;">=NETWORKDAYS("01-Jan-2025","31-Jan-2025") → 23 days</code>
+      <p>Holidays ko exclude karne ke liye: <code>=NETWORKDAYS(start, end, holidays_range)</code></p>
+    </div>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Interview Questions</div>
+      <div class="qa-card">
+        <div class="qa-q">Employee ka experience calculate kaise karein?</div>
+        <div class="qa-a"><code>=DATEDIF(JoiningDate, TODAY(), "Y") &amp; " Years " &amp; DATEDIF(JoiningDate, TODAY(), "YM") &amp; " Months"</code> — Yeh formula joining date se aaj tak ka exact experience years aur months mein deta hai.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-q">TODAY() aur NOW() mein kya antar hai?</div>
+        <div class="qa-a">TODAY() sirf date return karta hai (15-Jul-2025). NOW() date + time dono return karta hai (15-Jul-2025 14:30). Attendance timestamp ke liye NOW() aur date-only calculations ke liye TODAY() use karte hain.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 7: LOOKUP FUNCTIONS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-teal" data-emoji="🔍">
+    <div class="ch-label">Chapter 7</div>
+    <h2>Lookup Functions — Data Dhundna</h2>
+    <p>VLOOKUP, XLOOKUP, INDEX+MATCH — interviews mein sabse zyada pooche jaate hain!</p>
+  </div>
+  <div class="chapter-body">
+
+    <div class="box box-warn">
+      <div class="box-title">⚠️ Most Important Chapter!</div>
+      <p>Har MIS, HR Ops, aur Data Analyst interview mein VLOOKUP zaroor poochhte hain. Yeh chapter bahut dhyan se padhein!</p>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-card-header">
+        <div class="fname">VLOOKUP</div>
+        <div class="ftag">⭐ #1 Most Asked</div>
+      </div>
+      <div class="formula-card-body">
+        <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Ek table mein vertically (column mein) value search karta hai aur same row se related value return karta hai</div></div>
+        <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=VLOOKUP(lookup_value, table_array, col_index_num, [range_lookup])</code></div></div>
+        <div class="formula-row"><div class="formula-label">Parameters</div><div class="formula-value">
+          <strong>lookup_value</strong> = Jo dhundna hai (Employee ID)<br>
+          <strong>table_array</strong> = Poori table (A:D)<br>
+          <strong>col_index_num</strong> = Kitni column mein answer hai (2 = 2nd column)<br>
+          <strong>range_lookup</strong> = 0 ya FALSE = exact match (hamesha 0 likho!)
+        </div></div>
+        <div class="formula-row"><div class="formula-label">📊 HR Example</div><div class="formula-value"><code>=VLOOKUP(A2, Sheet2!A:D, 3, 0)</code> → Employee ID se Department dhundho</div></div>
+        <div class="formula-row"><div class="formula-label">⚠️ Limitations</div><div class="formula-value">• Sirf left se right search karta hai<br>• Table mein column order change nahi kar sakte<br>• Left mein value search nahi kar sakta</div></div>
+      </div>
+    </div>
+
+    <!-- Visual VLOOKUP diagram -->
+    <h4>VLOOKUP Kaise Kaam Karta Hai — Diagram</h4>
+    <div class="spreadsheet">
+      <div style="background:#1a237e;color:white;padding:8px 12px;font-size:12px;">Main Sheet — Search karo: <code style="color:#00e5ff;">=VLOOKUP("E003", MasterData!A:D, 3, 0)</code></div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;">
+        <div class="ss-col-header"></div>
+        <div class="ss-col-header">A — Emp ID 🔍</div>
+        <div class="ss-col-header">B — Name</div>
+        <div class="ss-col-header">C — Department</div>
+        <div class="ss-col-header">D — Salary</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;">
+        <div class="ss-row-num">2</div><div class="ss-cell">E001</div><div class="ss-cell">Rahul</div><div class="ss-cell">HR</div><div class="ss-cell">35000</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;">
+        <div class="ss-row-num">3</div><div class="ss-cell">E002</div><div class="ss-cell">Priya</div><div class="ss-cell">Sales</div><div class="ss-cell">42000</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;" style="background:#e3f2fd;">
+        <div class="ss-row-num" style="background:#1565c0;color:white;">3</div>
+        <div class="ss-cell active">E003 ← Search</div>
+        <div class="ss-cell">Amit</div>
+        <div class="ss-cell result-cell">Operations ← Answer (col 3)</div>
+        <div class="ss-cell">28000</div>
+      </div>
+    </div>
+
+    <!-- XLOOKUP -->
+    <div class="formula-card">
+      <div class="formula-card-header">
+        <div class="fname">XLOOKUP</div>
+        <div class="ftag">Modern — Excel 365+</div>
+      </div>
+      <div class="formula-card-body">
+        <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">VLOOKUP ka advanced version — left, right, dono directions mein search kar sakta hai</div></div>
+        <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=XLOOKUP(lookup_value, lookup_array, return_array, [if_not_found], [match_mode], [search_mode])</code></div></div>
+        <div class="formula-row"><div class="formula-label">📊 Example</div><div class="formula-value"><code>=XLOOKUP(A2, Sheet2!A:A, Sheet2!C:C, "Not Found")</code></div></div>
+        <div class="formula-row"><div class="formula-label">✅ Advantages</div><div class="formula-value">Left search possible | Column number nahi likhna | Built-in "not found" value | Faster</div></div>
+      </div>
+    </div>
+
+    <!-- INDEX MATCH -->
+    <h3>INDEX + MATCH — Power Combo</h3>
+    <div class="box box-tip">
+      <div class="box-title">💡 INDEX + MATCH Kyun Seekhein?</div>
+      <p>VLOOKUP sirf right direction mein dhundta hai. INDEX+MATCH kisi bhi direction mein dhundta hai — left bhi!</p>
+    </div>
+
+    <div class="grid-2">
+      <div class="box box-info">
+        <div class="box-title">📌 INDEX — Row Column se Value</div>
+        <p><code>=INDEX(array, row_num, col_num)</code></p>
+        <p>Table mein ek specific cell ki value nikalta hai position ke basis pe.</p>
+        <p><code>=INDEX(A1:D50, 3, 2)</code> → 3rd row, 2nd column ki value</p>
+      </div>
+      <div class="box box-info">
+        <div class="box-title">📌 MATCH — Position Dhundna</div>
+        <p><code>=MATCH(lookup_val, lookup_array, match_type)</code></p>
+        <p>Ek value ki position (row number) return karta hai array mein.</p>
+        <p><code>=MATCH("E003", A1:A50, 0)</code> → E003 kaunsi row mein hai</p>
+      </div>
+    </div>
+
+    <div class="box box-syntax">
+      <div class="box-title">📝 INDEX + MATCH Combined Formula</div>
+      <code>=INDEX(C:C, MATCH(F2, A:A, 0))</code>
+      <div class="note" style="margin-top:8px;">↑ F2 mein Employee ID dalo → C column se Department milega — left column bhi search ho sakta hai!</div>
+    </div>
+
+    <h3>VLOOKUP vs XLOOKUP vs INDEX+MATCH — Comparison</h3>
+    <table class="styled-table">
+      <thead><tr><th>Feature</th><th>VLOOKUP</th><th>XLOOKUP</th><th>INDEX+MATCH</th></tr></thead>
+      <tbody>
+        <tr><td>Left Search</td><td>❌ Nahi</td><td>✅ Haan</td><td>✅ Haan</td></tr>
+        <tr><td>Multiple Columns</td><td>❌ Ek ek</td><td>✅ Multiple</td><td>✅ Flexible</td></tr>
+        <tr><td>Error Handling</td><td>IFERROR lagao</td><td>Built-in</td><td>IFERROR lagao</td></tr>
+        <tr><td>Availability</td><td>All versions ✅</td><td>Excel 365 only</td><td>All versions ✅</td></tr>
+        <tr><td>Speed (big data)</td><td>Slow</td><td>Fast</td><td>Fast</td></tr>
+        <tr><td>Difficulty</td><td>Easy ⭐</td><td>Easy ⭐⭐</td><td>Medium ⭐⭐⭐</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Interview Questions — Lookup</div>
+      <div class="qa-card">
+        <div class="qa-q">VLOOKUP kya hai aur kaise use karte hain? Ek example do.</div>
+        <div class="qa-a">VLOOKUP ek lookup formula hai jo table mein vertically search karke related value return karta hai. Jaise: Employee Master Sheet mein Employee ID se Department dhundna: <code>=IFERROR(VLOOKUP(A2, MasterSheet!A:D, 3, 0), "Not Found")</code> — A2 mein ID hai, MasterSheet mein search karo, 3rd column (Department) return karo, 0 = exact match, IFERROR se #N/A avoid karo.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-q">VLOOKUP ki kya limitations hain?</div>
+        <div class="qa-a">1. Sirf right direction mein search karta hai — left column se value nahi la sakta. 2. Column number hardcode karna padta hai — column add/delete hone pe formula break hota hai. 3. Large data mein slow hota hai. Isliye XLOOKUP ya INDEX+MATCH better hain.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-q">INDEX MATCH VLOOKUP se better kyun hai?</div>
+        <div class="qa-a">INDEX+MATCH kisi bhi direction mein search kar sakta hai (left bhi), column number change hone pe break nahi hota, aur large datasets mein VLOOKUP se fast hai. Yeh combination zyada flexible aur professional hai.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 8: CONDITIONAL FUNCTIONS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-amber" data-emoji="📊">
+    <div class="ch-label">Chapter 8</div>
+    <h2>Conditional Functions — Condition Ke Saath Count aur Sum</h2>
+    <p>COUNTIF, SUMIF, AVERAGEIF aur unke multi-condition versions</p>
+  </div>
+  <div class="chapter-body">
+
+    <table class="styled-table">
+      <thead><tr><th>Function</th><th>Kya Karta Hai?</th><th>Syntax</th></tr></thead>
+      <tbody>
+        <tr><td><strong>COUNTIF</strong></td><td>Condition se cells count</td><td><code>=COUNTIF(range, criteria)</code></td></tr>
+        <tr><td><strong>COUNTIFS</strong></td><td>Multiple conditions se count</td><td><code>=COUNTIFS(range1, crit1, range2, crit2)</code></td></tr>
+        <tr><td><strong>SUMIF</strong></td><td>Condition se sum</td><td><code>=SUMIF(range, criteria, sum_range)</code></td></tr>
+        <tr><td><strong>SUMIFS</strong></td><td>Multiple conditions se sum</td><td><code>=SUMIFS(sum_range, range1, crit1, range2, crit2)</code></td></tr>
+        <tr><td><strong>AVERAGEIF</strong></td><td>Condition se average</td><td><code>=AVERAGEIF(range, criteria, avg_range)</code></td></tr>
+        <tr><td><strong>AVERAGEIFS</strong></td><td>Multiple conditions se average</td><td><code>=AVERAGEIFS(avg_range, range1, crit1, ...)</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Real HR Examples</h3>
+
+    <div class="spreadsheet">
+      <div style="background:#1a237e;color:white;padding:8px 12px;font-size:12px;">Employee Database — 50 rows</div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;">
+        <div class="ss-col-header"></div>
+        <div class="ss-col-header">A — Name</div>
+        <div class="ss-col-header">B — Dept</div>
+        <div class="ss-col-header">C — Salary</div>
+        <div class="ss-col-header">D — Status</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;">
+        <div class="ss-row-num">2</div><div class="ss-cell">Rahul</div><div class="ss-cell">HR</div><div class="ss-cell">35000</div><div class="ss-cell" style="background:#e8f5e9;color:green;">Active</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;">
+        <div class="ss-row-num">3</div><div class="ss-cell">Priya</div><div class="ss-cell">Sales</div><div class="ss-cell">42000</div><div class="ss-cell" style="background:#e8f5e9;color:green;">Active</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr 1fr 1fr 1fr;">
+        <div class="ss-row-num">4</div><div class="ss-cell">Amit</div><div class="ss-cell">HR</div><div class="ss-cell">28000</div><div class="ss-cell" style="background:#ffebee;color:red;">Inactive</div>
+      </div>
+    </div>
+
+    <table class="styled-table" style="margin-top:16px;">
+      <thead><tr><th>Sawaal</th><th>Formula</th></tr></thead>
+      <tbody>
+        <tr><td>HR department mein kitne log hain?</td><td><code>=COUNTIF(B:B,"HR")</code></td></tr>
+        <tr><td>Active employees kitne hain?</td><td><code>=COUNTIF(D:D,"Active")</code></td></tr>
+        <tr><td>HR ke Active employees kitne?</td><td><code>=COUNTIFS(B:B,"HR",D:D,"Active")</code></td></tr>
+        <tr><td>Total HR salary?</td><td><code>=SUMIF(B:B,"HR",C:C)</code></td></tr>
+        <tr><td>35000+ salary wale Active employees ki total salary?</td><td><code>=SUMIFS(C:C,C:C,"&gt;=35000",D:D,"Active")</code></td></tr>
+        <tr><td>Sales department ki average salary?</td><td><code>=AVERAGEIF(B:B,"Sales",C:C)</code></td></tr>
+        <tr><td>Active HR employees ki average salary?</td><td><code>=AVERAGEIFS(C:C,B:B,"HR",D:D,"Active")</code></td></tr>
+      </tbody>
+    </table>
+
+    <div class="box box-tip">
+      <div class="box-title">💡 Criteria Operators</div>
+      <p>Conditions mein aap yeh operators use kar sakte ho:</p>
+      <div class="grid-2" style="margin-top:8px;">
+        <div><code>"&gt;35000"</code> = 35000 se zyada<br><code>"&gt;=35000"</code> = 35000 ya zyada<br><code>"&lt;35000"</code> = 35000 se kam</div>
+        <div><code>"&lt;&gt;Active"</code> = Active nahi<br><code>"HR*"</code> = HR se shuru hone wale<br><code>"*Manager*"</code> = Manager word ho</div>
+      </div>
+    </div>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Interview Questions</div>
+      <div class="qa-card">
+        <div class="qa-q">SUMIF aur SUMIFS mein kya difference hai?</div>
+        <div class="qa-a">SUMIF ek condition se sum karta hai: <code>=SUMIF(B:B,"HR",C:C)</code> — HR department ki salary. SUMIFS multiple conditions se sum karta hai: <code>=SUMIFS(C:C,B:B,"HR",D:D,"Active")</code> — HR ke Active employees ki salary. SUMIFS mein sum_range pehle aata hai, SUMIF mein last.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 9: GOOGLE SHEETS SPECIAL ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-cyan" data-emoji="🌐">
+    <div class="ch-label">Chapter 9</div>
+    <h2>Google Sheets Special Functions</h2>
+    <p>QUERY, FILTER, IMPORTRANGE — Google Sheets ki superpowers!</p>
+  </div>
+  <div class="chapter-body">
+
+    <div class="formula-card">
+      <div class="formula-card-header">
+        <div class="fname">QUERY</div>
+        <div class="ftag">⭐ Most Powerful</div>
+      </div>
+      <div class="formula-card-body">
+        <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">SQL jaise language se data filter, sort, group, aur aggregate karta hai — spreadsheet mein database query!</div></div>
+        <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=QUERY(data, query_string, headers)</code></div></div>
+        <div class="formula-row"><div class="formula-label">📊 Example 1</div><div class="formula-value"><code>=QUERY(A1:D100,"SELECT A,B,C WHERE D='Active' ORDER BY C DESC",1)</code></div></div>
+        <div class="formula-row"><div class="formula-label">📊 Example 2</div><div class="formula-value"><code>=QUERY(A:D,"SELECT B, SUM(C) GROUP BY B LABEL SUM(C) 'Total Salary'",1)</code></div></div>
+        <div class="formula-row"><div class="formula-label">📊 HR Use</div><div class="formula-value">Active HR employees dhundho: <code>=QUERY(A:D,"SELECT * WHERE B='HR' AND D='Active'",1)</code></div></div>
+      </div>
+    </div>
+
+    <h3>QUERY Cheat Sheet</h3>
+    <table class="styled-table">
+      <thead><tr><th>Keyword</th><th>Kya Karta Hai?</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><code>SELECT</code></td><td>Kaunse columns dikhao</td><td><code>SELECT A, B, C</code></td></tr>
+        <tr><td><code>WHERE</code></td><td>Condition lagao</td><td><code>WHERE D = 'Active'</code></td></tr>
+        <tr><td><code>ORDER BY</code></td><td>Sort karo</td><td><code>ORDER BY C DESC</code></td></tr>
+        <tr><td><code>LIMIT</code></td><td>Kitni rows chahiye</td><td><code>LIMIT 10</code></td></tr>
+        <tr><td><code>GROUP BY</code></td><td>Group karo</td><td><code>GROUP BY B</code></td></tr>
+        <tr><td><code>SUM, COUNT, AVG</code></td><td>Aggregate functions</td><td><code>SELECT B, SUM(C)</code></td></tr>
+        <tr><td><code>CONTAINS</code></td><td>Text search</td><td><code>WHERE A CONTAINS 'Manager'</code></td></tr>
+        <tr><td><code>LIKE</code></td><td>Pattern match</td><td><code>WHERE A LIKE '%HR%'</code></td></tr>
+      </tbody>
+    </table>
+
+    <!-- FILTER -->
+    <div class="formula-card">
+      <div class="formula-card-header">
+        <div class="fname">FILTER</div>
+        <div class="ftag">Dynamic Filter</div>
+      </div>
+      <div class="formula-card-body">
+        <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Data ko condition ke basis pe filter karke naya table return karta hai — dynamic aur automatic update hota hai</div></div>
+        <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=FILTER(range, condition1, [condition2, ...])</code></div></div>
+        <div class="formula-row"><div class="formula-label">📊 Example</div><div class="formula-value"><code>=FILTER(A2:D100, B2:B100="HR")</code> → Sirf HR employees</div></div>
+        <div class="formula-row"><div class="formula-label">📊 Multiple</div><div class="formula-value"><code>=FILTER(A2:D100, (B2:B100="HR")*(D2:D100="Active"))</code></div></div>
+      </div>
+    </div>
+
+    <!-- IMPORTRANGE -->
+    <div class="formula-card">
+      <div class="formula-card-header">
+        <div class="fname">IMPORTRANGE</div>
+        <div class="ftag">⭐ HR Favorite</div>
+      </div>
+      <div class="formula-card-body">
+        <div class="formula-row"><div class="formula-label">📌 Kya hai?</div><div class="formula-value">Ek Google Sheet se doosri Google Sheet mein data import karta hai — alag files connect karna!</div></div>
+        <div class="formula-row"><div class="formula-label">📝 Syntax</div><div class="formula-value"><code>=IMPORTRANGE("spreadsheet_url", "sheet!range")</code></div></div>
+        <div class="formula-row"><div class="formula-label">📊 Example</div><div class="formula-value"><code>=IMPORTRANGE("https://docs.google.com/spreadsheets/d/ABC123","Sheet1!A1:D100")</code></div></div>
+        <div class="formula-row"><div class="formula-label">💡 Use Case</div><div class="formula-value">HR Master Sheet se Attendance Sheet mein employee data import karo — automatic sync!</div></div>
+        <div class="formula-row"><div class="formula-label">⚠️ Note</div><div class="formula-value">Pehli baar use mein permission deni padti hai — "Allow Access" button click karo</div></div>
+      </div>
+    </div>
+
+    <h3>Other Google Sheets Functions</h3>
+    <table class="styled-table">
+      <thead><tr><th>Function</th><th>Kya Karta Hai?</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td><strong>SORT</strong></td><td>Data sort karke return karta hai</td><td><code>=SORT(A2:D100, 3, FALSE)</code> → Salary descending</td></tr>
+        <tr><td><strong>SORTN</strong></td><td>Top N rows sort karke deta hai</td><td><code>=SORTN(A2:D100, 5, 0, 3, FALSE)</code> → Top 5 by salary</td></tr>
+        <tr><td><strong>UNIQUE</strong></td><td>Unique values list deta hai</td><td><code>=UNIQUE(B2:B100)</code> → Unique departments</td></tr>
+        <tr><td><strong>ARRAYFORMULA</strong></td><td>Formula puri range pe apply karta hai</td><td><code>=ARRAYFORMULA(A2:A100*B2:B100)</code></td></tr>
+        <tr><td><strong>SPARKLINE</strong></td><td>Cell mein mini chart</td><td><code>=SPARKLINE(B2:G2)</code> → Attendance trend</td></tr>
+        <tr><td><strong>IMAGE</strong></td><td>URL se image insert karna</td><td><code>=IMAGE("https://photo.url")</code></td></tr>
+      </tbody>
+    </table>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Interview Questions</div>
+      <div class="qa-card">
+        <div class="qa-q">IMPORTRANGE kya hai aur kab use karte hain?</div>
+        <div class="qa-a">IMPORTRANGE ek Google Sheets function hai jo ek spreadsheet se doosri spreadsheet mein data automatically import karta hai. HR mein use hota hai jab alag alag sheets mein kaam ho — jaise Recruitment Sheet se Joining Sheet mein employee data pull karna. Real-time sync hota hai.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-q">QUERY aur FILTER mein kya difference hai?</div>
+        <div class="qa-a">FILTER simple condition-based filtering karta hai — Google Sheets aur Excel dono mein available hai. QUERY zyada powerful hai — SQL jaisi language se complex operations (GROUP BY, ORDER BY, aggregate functions) kar sakta hai — sirf Google Sheets mein.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 10: PIVOT TABLE ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-red" data-emoji="📌">
+    <div class="ch-label">Chapter 10</div>
+    <h2>Pivot Table — Data Analysis Ka King</h2>
+    <p>Pivot Table ko deeply samjho — companies ka sabse important reporting tool!</p>
+  </div>
+  <div class="chapter-body">
+
+    <div class="box box-warn">
+      <div class="box-title">⚠️ Yeh Chapter Skip Mat Karo!</div>
+      <p>MIS Executive, HR Operations, aur Reporting Analyst interviews mein Pivot Table ek mandatory skill hai. Isko aaram se samjho aur practice karo!</p>
+    </div>
+
+    <h3>Pivot Table Kya Hai?</h3>
+    <p><strong>Pivot Table ek dynamic summarization tool hai</strong> jo bade data se quickly summary, totals, counts, averages nikalta hai — bina ek bhi formula likhe! Thousands of rows ko seconds mein analyze kar sakte ho.</p>
+
+    <div class="flow">
+      <div class="flow-box">📊 Raw Data<br>(1000 rows)</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">🔄 Pivot Table<br>Insert karo</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">📋 Summary<br>Report ready!</div>
+      <div class="flow-arrow">→</div>
+      <div class="flow-box">📈 Charts &amp;<br>Dashboard</div>
+    </div>
+
+    <h3>Pivot Table ke 4 Zones</h3>
+    <div class="pivot-box">
+      <div class="pivot-box-header">🔄 Pivot Table Field List — Yahan Drag &amp; Drop Karo</div>
+      <div class="pivot-zones">
+        <div class="pivot-zone">
+          <div class="pivot-zone-label zone-filter">🔽 FILTERS</div>
+          <p style="font-size:12px;color:#666;margin-bottom:8px;">Poori report filter karna</p>
+          <div class="pivot-item">Year</div>
+          <div class="pivot-item">Month</div>
+        </div>
+        <div class="pivot-zone">
+          <div class="pivot-zone-label zone-cols">📊 COLUMNS</div>
+          <p style="font-size:12px;color:#666;margin-bottom:8px;">Top row header</p>
+          <div class="pivot-item">Status (Active/Inactive)</div>
+        </div>
+        <div class="pivot-zone">
+          <div class="pivot-zone-label zone-rows">📋 ROWS</div>
+          <p style="font-size:12px;color:#666;margin-bottom:8px;">Left side labels</p>
+          <div class="pivot-item">Department</div>
+          <div class="pivot-item">Designation</div>
+        </div>
+        <div class="pivot-zone">
+          <div class="pivot-zone-label zone-vals">🔢 VALUES</div>
+          <p style="font-size:12px;color:#666;margin-bottom:8px;">Numbers ka summary</p>
+          <div class="pivot-item">Sum of Salary</div>
+          <div class="pivot-item">Count of Employees</div>
+          <div class="pivot-item">Average of CTC</div>
+        </div>
+      </div>
+    </div>
+
+    <h3>Pivot Table Step-by-Step Banana</h3>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <strong>Data Select Karo</strong>
+          Data ka koi bhi cell click karo (poori table automatically select hogi)
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <strong>Insert → Pivot Table</strong>
+          Excel: Insert tab → PivotTable | Google Sheets: Insert → Pivot Table
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <strong>Location Choose Karo</strong>
+          New Worksheet (recommended) ya Existing Worksheet — OK click karo
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div class="step-content">
+          <strong>Fields Drag &amp; Drop Karo</strong>
+          Right side se Fields ko Rows, Columns, Values, Filters mein drag karo
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">5</div>
+        <div class="step-content">
+          <strong>Value Field Settings</strong>
+          Values pe right-click → "Value Field Settings" → Sum/Count/Average choose karo
+        </div>
+      </div>
+    </div>
+
+    <h3>Pivot Table — HR Real Examples</h3>
+
+    <h4>Example 1: Department-wise Employee Count</h4>
+    <div class="grid-2">
+      <div>
+        <div style="font-weight:700;font-size:13px;color:var(--primary);margin-bottom:8px;">🔧 Setup:</div>
+        <div class="pivot-box" style="border-radius:10px;">
+          <div class="pivot-box-header" style="font-size:12px;">Pivot Fields</div>
+          <div style="padding:12px;">
+            <div style="margin-bottom:6px;"><span class="badge badge-blue">ROWS</span> Department</div>
+            <div><span class="badge badge-purple">VALUES</span> Count of Employee Name</div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="font-weight:700;font-size:13px;color:var(--primary);margin-bottom:8px;">📊 Result:</div>
+        <table class="styled-table">
+          <thead><tr><th>Department</th><th>Count of Employees</th></tr></thead>
+          <tbody>
+            <tr><td>HR</td><td>12</td></tr>
+            <tr><td>Sales</td><td>28</td></tr>
+            <tr><td>Operations</td><td>45</td></tr>
+            <tr><td>IT</td><td>15</td></tr>
+            <tr><td><strong>Grand Total</strong></td><td><strong>100</strong></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h4>Example 2: Department-wise Salary Summary</h4>
+    <table class="styled-table">
+      <thead><tr><th>Department</th><th>Sum Salary</th><th>Avg Salary</th><th>Max Salary</th><th>Min Salary</th><th>Count</th></tr></thead>
+      <tbody>
+        <tr><td>HR</td><td>4,20,000</td><td>35,000</td><td>55,000</td><td>22,000</td><td>12</td></tr>
+        <tr><td>Sales</td><td>11,76,000</td><td>42,000</td><td>80,000</td><td>25,000</td><td>28</td></tr>
+        <tr><td>Operations</td><td>12,60,000</td><td>28,000</td><td>50,000</td><td>18,000</td><td>45</td></tr>
+        <tr><td>IT</td><td>9,00,000</td><td>60,000</td><td>1,20,000</td><td>35,000</td><td>15</td></tr>
+        <tr><td><strong>Grand Total</strong></td><td><strong>37,56,000</strong></td><td><strong>37,560</strong></td><td></td><td></td><td><strong>100</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h4>Example 3: Recruitment Dashboard — Monthly Pivot</h4>
+    <table class="styled-table">
+      <thead><tr><th>Month</th><th>Applied</th><th>Interviewed</th><th>Selected</th><th>Joined</th><th>Rejection %</th></tr></thead>
+      <tbody>
+        <tr><td>January</td><td>150</td><td>80</td><td>25</td><td>20</td><td>75%</td></tr>
+        <tr><td>February</td><td>200</td><td>110</td><td>35</td><td>28</td><td>75%</td></tr>
+        <tr><td>March</td><td>180</td><td>95</td><td>30</td><td>25</td><td>74%</td></tr>
+        <tr><td><strong>Q1 Total</strong></td><td><strong>530</strong></td><td><strong>285</strong></td><td><strong>90</strong></td><td><strong>73</strong></td><td><strong>83%</strong></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Pivot Table — Advanced Features</h3>
+
+    <div class="grid-2">
+      <div class="box box-tip">
+        <div class="box-title">📊 % of Total</div>
+        <p>Values pe right-click → "Show Values As" → "% of Grand Total" → Har department ka percentage dikho</p>
+      </div>
+      <div class="box box-tip">
+        <div class="box-title">📅 Date Grouping</div>
+        <p>Date column pe right-click → "Group" → Month, Quarter, Year choose karo — automatic monthly summary!</p>
+      </div>
+      <div class="box box-info">
+        <div class="box-title">🔢 Calculated Field</div>
+        <p>PivotTable Analyze → Fields, Items → Calculated Field → Custom formula banao. Jaise: <code>Salary * 12%</code> = Annual PF</p>
+      </div>
+      <div class="box box-info">
+        <div class="box-title">🎛️ Slicers</div>
+        <p>Visual filter buttons! Insert → Slicer → Field choose karo. Click karke instantly filter karo — dashboard ke liye perfect!</p>
+      </div>
+    </div>
+
+    <h3>Pivot Table — MIS Report Dashboard Visual</h3>
+    <div class="chart-visual">
+      <div class="chart-title">📊 Department-wise Headcount — Bar Chart from Pivot</div>
+      <div class="bar-chart">
+        <div class="bar-row"><div class="bar-label">Operations</div><div class="bar-track"><div class="bar-fill" style="width:90%;background:linear-gradient(90deg,#1a237e,#3949ab);">45</div></div></div>
+        <div class="bar-row"><div class="bar-label">Sales</div><div class="bar-track"><div class="bar-fill" style="width:56%;background:linear-gradient(90deg,#1565c0,#1976d2);">28</div></div></div>
+        <div class="bar-row"><div class="bar-label">IT</div><div class="bar-track"><div class="bar-fill" style="width:30%;background:linear-gradient(90deg,#0097a7,#00bcd4);">15</div></div></div>
+        <div class="bar-row"><div class="bar-label">HR</div><div class="bar-track"><div class="bar-fill" style="width:24%;background:linear-gradient(90deg,#2e7d32,#43a047);">12</div></div></div>
+      </div>
+    </div>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Pivot Table Interview Questions</div>
+      <div class="qa-card">
+        <div class="qa-q">Pivot Table kya hota hai? Ek real example do.</div>
+        <div class="qa-a">Pivot Table ek powerful data summarization tool hai jo bade dataset ko seconds mein analyze karta hai. Real example: 1000 rows wale employee database se Pivot Table banao → Department ko Rows mein daalo → Salary ko Values mein daalo (Sum) → Instantly har department ki total salary milti hai! No formula, no manual work.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-q">Pivot Table mein Rows, Columns, Values, Filters kya hote hain?</div>
+        <div class="qa-a">Rows = Left side ke labels (Department, City). Columns = Top headers jo data horizontal mein divide karte hain (Month, Status). Values = Jo numbers calculate hote hain (Sum, Count, Average). Filters = Report-level filter — jaise sirf 2024 ka data dikhao. Sahi placement se professional reports bante hain.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-q">Pivot Table mein "Calculated Field" kya hai?</div>
+        <div class="qa-a">Calculated Field ek custom formula hai jo existing pivot fields pe based hoti hai — bina original data mein column add kiye. Jaise Salary field se PF = Salary × 12% calculate karna directly Pivot mein. PivotTable Analyze → Fields, Items → Calculated Field se add karte hain.</div>
+      </div>
+      <div class="qa-card">
+        <div class="qa-q">Slicer kya hai?</div>
+        <div class="qa-a">Slicer ek visual filter button hai jo pivot table ke saath connect hota hai. Insert → Slicer → Department select karo → Buttons aate hain. Click karte hi data filter ho jaata hai — Excel dashboards mein extensively use hota hai. Timeline slicer specifically dates ke liye hota hai.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 11: CHARTS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-indigo" data-emoji="📈">
+    <div class="ch-label">Chapter 11</div>
+    <h2>Charts &amp; Graphs — Data Visualize Karo</h2>
+    <p>Sahi chart choose karna sikho — yeh ek professional skill hai!</p>
+  </div>
+  <div class="chapter-body">
+
+    <h3>Chart Types aur Unka Use</h3>
+    <table class="styled-table">
+      <thead><tr><th>Chart Type</th><th>Kab Use Karein?</th><th>HR Example</th></tr></thead>
+      <tbody>
+        <tr><td>📊 <strong>Column Chart</strong></td><td>Categories compare karna (vertical bars)</td><td>Department-wise headcount comparison</td></tr>
+        <tr><td>📊 <strong>Bar Chart</strong></td><td>Long labels ke saath comparison (horizontal)</td><td>Designation-wise salary comparison</td></tr>
+        <tr><td>🥧 <strong>Pie / Donut Chart</strong></td><td>Part of whole dikhana (% share)</td><td>Gender ratio, department distribution</td></tr>
+        <tr><td>📈 <strong>Line Chart</strong></td><td>Trend over time dikhana</td><td>Monthly hiring trend, attrition over years</td></tr>
+        <tr><td>🔵 <strong>Scatter Plot</strong></td><td>Correlation dikhana (2 variables)</td><td>Experience vs Salary relationship</td></tr>
+        <tr><td>📊 <strong>Area Chart</strong></td><td>Volume trend + total</td><td>Cumulative joining over time</td></tr>
+        <tr><td>📊 <strong>Combo Chart</strong></td><td>Bar + Line ek saath</td><td>Headcount (bar) + Attrition Rate (line)</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Best Chart Selection Guide</h3>
+    <div class="flow" style="flex-direction:column;gap:12px;align-items:stretch;max-width:600px;margin:20px auto;">
+      <div style="background:#e3f2fd;border-radius:10px;padding:12px;text-align:center;font-weight:700;">❓ Kya dikhana hai?</div>
+      <div class="grid-3">
+        <div style="background:#e8f5e9;border-radius:10px;padding:12px;text-align:center;font-size:13px;"><strong>Comparison</strong><br>↓<br>Column / Bar Chart</div>
+        <div style="background:#fff3e0;border-radius:10px;padding:12px;text-align:center;font-size:13px;"><strong>% / Share</strong><br>↓<br>Pie / Donut Chart</div>
+        <div style="background:#f3e5f5;border-radius:10px;padding:12px;text-align:center;font-size:13px;"><strong>Trend over Time</strong><br>↓<br>Line / Area Chart</div>
+      </div>
+    </div>
+
+    <h3>Chart Banana — Step by Step</h3>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><div class="step-content"><strong>Data Select Karo</strong> Headers aur values dono select karo</div></div>
+      <div class="step"><div class="step-num">2</div><div class="step-content"><strong>Insert → Charts</strong> Ya recommended charts se choose karo</div></div>
+      <div class="step"><div class="step-num">3</div><div class="step-content"><strong>Chart Type Change Karo</strong> Right-click → Change Chart Type</div></div>
+      <div class="step"><div class="step-num">4</div><div class="step-content"><strong>Title, Labels Add Karo</strong> Chart Elements (+) se axis titles, data labels add karo</div></div>
+      <div class="step"><div class="step-num">5</div><div class="step-content"><strong>Format Karo</strong> Colors, fonts, gridlines customize karo professional look ke liye</div></div>
+    </div>
+
+    <div class="box box-tip">
+      <div class="box-title">💡 Dashboard Tip</div>
+      <p>Multiple charts, pivot tables, aur slicers ek sheet pe lagao → Dashboard ready! Iske liye:
+      View → Freeze Panes → Background color white → Gridlines hide karo (View → Show → uncheck Gridlines)</p>
+    </div>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Interview Questions</div>
+      <div class="qa-card">
+        <div class="qa-q">Pie chart aur bar chart mein se kab kya use karein?</div>
+        <div class="qa-a">Pie chart tab use karo jab parts ka total se percentage ya share dikhana ho (jaise gender distribution — Male 60%, Female 40%). Bar/Column chart tab use karo jab multiple categories ko compare karna ho (jaise har department ke employees). Pie mein zyada categories nahi honi chahiye — max 5-6.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 12: FORMATTING & TOOLS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-purple" data-emoji="🎨">
+    <div class="ch-label">Chapter 12</div>
+    <h2>Formatting &amp; Essential Tools</h2>
+    <p>Conditional Formatting, Data Validation, Duplicates, Freeze — professional Excel skills</p>
+  </div>
+  <div class="chapter-body">
+
+    <h3>Conditional Formatting — Cells Ko Color Code Karo</h3>
+    <div class="box box-tip">
+      <div class="box-title">💡 Kya Hai?</div>
+      <p>Conditional Formatting cells ko automatically color deta hai condition ke basis pe — bina ek bhi formula ke visual analysis possible hoti hai!</p>
+    </div>
+
+    <table class="styled-table">
+      <thead><tr><th>Use Case</th><th>Setup</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>High salary highlight</td><td>Cell Value &gt; 50000 → Green</td><td>Salary column mein top earners green</td></tr>
+        <tr><td>Low attendance alert</td><td>Cell Value &lt; 75 → Red</td><td>75% se kam attendance red</td></tr>
+        <tr><td>Duplicate values</td><td>Highlight Cell Rules → Duplicate Values</td><td>Duplicate IDs highlight karna</td></tr>
+        <tr><td>Data bars</td><td>Data Bars → Blue gradient</td><td>Salary ke aage bar dikhao</td></tr>
+        <tr><td>Color scales</td><td>Color Scales → Green-Yellow-Red</td><td>Performance score color map</td></tr>
+        <tr><td>Icon sets</td><td>Icon Sets → Traffic Lights</td><td>Green/Yellow/Red status</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Data Validation — Galat Data Entry Rokna</h3>
+    <div class="box box-info">
+      <div class="box-title">📌 Data Validation Kya Hai?</div>
+      <p>Ek cell mein sirf specific type ka data enter ho sake — yeh ensure karta hai. Jaise salary column mein koi text na type kar sake.</p>
+    </div>
+
+    <div class="grid-2">
+      <div>
+        <h4>Kaise Karo?</h4>
+        <div class="steps">
+          <div class="step"><div class="step-num">1</div><div class="step-content">Cell/column select karo</div></div>
+          <div class="step"><div class="step-num">2</div><div class="step-content">Data → Data Validation</div></div>
+          <div class="step"><div class="step-num">3</div><div class="step-content">Allow: Number/List/Date choose karo</div></div>
+          <div class="step"><div class="step-num">4</div><div class="step-content">Error message set karo</div></div>
+        </div>
+      </div>
+      <div>
+        <h4>Common Uses</h4>
+        <table class="styled-table">
+          <thead><tr><th>Use</th><th>Setting</th></tr></thead>
+          <tbody>
+            <tr><td>Dropdown list</td><td>Allow: List → Items type karo</td></tr>
+            <tr><td>Only numbers</td><td>Allow: Whole Number</td></tr>
+            <tr><td>Date range</td><td>Allow: Date → Between</td></tr>
+            <tr><td>Max characters</td><td>Allow: Text Length → &lt;= 10</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <h3>Important Tools</h3>
+    <div class="grid-2">
+      <div class="box box-tip">
+        <div class="box-title">🔧 Remove Duplicates</div>
+        <p>Data → Remove Duplicates → Columns select karo → OK</p>
+        <p>Employee IDs, emails ke duplicates hatao. <strong>Pehle backup lo!</strong></p>
+      </div>
+      <div class="box box-tip">
+        <div class="box-title">❄️ Freeze Panes</div>
+        <p>View → Freeze Panes → First Row/Column ya Custom</p>
+        <p>Scroll karne pe headers fixed rehte hain — large data ke liye essential.</p>
+      </div>
+      <div class="box box-info">
+        <div class="box-title">🏷️ Named Ranges</div>
+        <p>Formulas → Name Manager → New → Name do</p>
+        <p>B2:B100 ko "Salary" naam do → formulas mein <code>=SUM(Salary)</code> likho</p>
+      </div>
+      <div class="box box-info">
+        <div class="box-title">🔒 Protect Sheet</div>
+        <p>Review → Protect Sheet → Password set karo</p>
+        <p>Formulas aur important data ko accidentally change hone se bachao</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 13: KEYBOARD SHORTCUTS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-dark" data-emoji="⌨️">
+    <div class="ch-label">Chapter 13</div>
+    <h2>100+ Keyboard Shortcuts</h2>
+    <p>Speed badhao — professionals mouse se nahi, keyboard se kaam karte hain!</p>
+  </div>
+  <div class="chapter-body">
+
+    <div class="grid-2">
+      <div>
+        <h3>📗 Excel — Windows Shortcuts</h3>
+
+        <h4>Navigation</h4>
+        <div class="kbd-row"><div class="action">Next cell</div><span class="kbd">Tab</span></div>
+        <div class="kbd-row"><div class="action">Move to last used cell</div><span class="kbd">Ctrl</span>+<span class="kbd">End</span></div>
+        <div class="kbd-row"><div class="action">Go to cell A1</div><span class="kbd">Ctrl</span>+<span class="kbd">Home</span></div>
+        <div class="kbd-row"><div class="action">Move between sheets</div><span class="kbd">Ctrl</span>+<span class="kbd">PgUp/Dn</span></div>
+        <div class="kbd-row"><div class="action">Jump to data edge</div><span class="kbd">Ctrl</span>+<span class="kbd">Arrow</span></div>
+        <div class="kbd-row"><div class="action">Select entire column</div><span class="kbd">Ctrl</span>+<span class="kbd">Space</span></div>
+        <div class="kbd-row"><div class="action">Select entire row</div><span class="kbd">Shift</span>+<span class="kbd">Space</span></div>
+        <div class="kbd-row"><div class="action">Select all cells</div><span class="kbd">Ctrl</span>+<span class="kbd">A</span></div>
+
+        <h4>Editing</h4>
+        <div class="kbd-row"><div class="action">Copy</div><span class="kbd">Ctrl</span>+<span class="kbd">C</span></div>
+        <div class="kbd-row"><div class="action">Cut</div><span class="kbd">Ctrl</span>+<span class="kbd">X</span></div>
+        <div class="kbd-row"><div class="action">Paste</div><span class="kbd">Ctrl</span>+<span class="kbd">V</span></div>
+        <div class="kbd-row"><div class="action">Paste Special</div><span class="kbd">Ctrl</span>+<span class="kbd">Alt</span>+<span class="kbd">V</span></div>
+        <div class="kbd-row"><div class="action">Undo</div><span class="kbd">Ctrl</span>+<span class="kbd">Z</span></div>
+        <div class="kbd-row"><div class="action">Redo</div><span class="kbd">Ctrl</span>+<span class="kbd">Y</span></div>
+        <div class="kbd-row"><div class="action">Find &amp; Replace</div><span class="kbd">Ctrl</span>+<span class="kbd">H</span></div>
+        <div class="kbd-row"><div class="action">Find</div><span class="kbd">Ctrl</span>+<span class="kbd">F</span></div>
+        <div class="kbd-row"><div class="action">Delete cell content</div><span class="kbd">Del</span></div>
+        <div class="kbd-row"><div class="action">Edit cell</div><span class="kbd">F2</span></div>
+
+        <h4>Formatting</h4>
+        <div class="kbd-row"><div class="action">Bold</div><span class="kbd">Ctrl</span>+<span class="kbd">B</span></div>
+        <div class="kbd-row"><div class="action">Italic</div><span class="kbd">Ctrl</span>+<span class="kbd">I</span></div>
+        <div class="kbd-row"><div class="action">Underline</div><span class="kbd">Ctrl</span>+<span class="kbd">U</span></div>
+        <div class="kbd-row"><div class="action">Format Cells dialog</div><span class="kbd">Ctrl</span>+<span class="kbd">1</span></div>
+        <div class="kbd-row"><div class="action">Currency format</div><span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">$</span></div>
+        <div class="kbd-row"><div class="action">Percent format</div><span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">%</span></div>
+        <div class="kbd-row"><div class="action">Date format</div><span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">#</span></div>
+
+        <h4>Rows &amp; Columns</h4>
+        <div class="kbd-row"><div class="action">Insert row/column</div><span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">+</span></div>
+        <div class="kbd-row"><div class="action">Delete row/column</div><span class="kbd">Ctrl</span>+<span class="kbd">-</span></div>
+        <div class="kbd-row"><div class="action">Hide rows</div><span class="kbd">Ctrl</span>+<span class="kbd">9</span></div>
+        <div class="kbd-row"><div class="action">Hide columns</div><span class="kbd">Ctrl</span>+<span class="kbd">0</span></div>
+        <div class="kbd-row"><div class="action">AutoFit column width</div><span class="kbd">Alt</span>+<span class="kbd">H</span>→<span class="kbd">O</span>→<span class="kbd">I</span></div>
+      </div>
+
+      <div>
+        <h3>📘 Google Sheets — Special Shortcuts</h3>
+        <div class="kbd-row"><div class="action">Open formula bar</div><span class="kbd">F2</span></div>
+        <div class="kbd-row"><div class="action">Insert current date</div><span class="kbd">Ctrl</span>+<span class="kbd">;</span></div>
+        <div class="kbd-row"><div class="action">Insert current time</div><span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">;</span></div>
+        <div class="kbd-row"><div class="action">Open named ranges</div><span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">F3</span></div>
+        <div class="kbd-row"><div class="action">Add sheet</div><span class="kbd">Shift</span>+<span class="kbd">F11</span></div>
+        <div class="kbd-row"><div class="action">Comment</div><span class="kbd">Ctrl</span>+<span class="kbd">Alt</span>+<span class="kbd">M</span></div>
+        <div class="kbd-row"><div class="action">Version history</div><span class="kbd">Ctrl</span>+<span class="kbd">Alt</span>+<span class="kbd">Shift</span>+<span class="kbd">H</span></div>
+
+        <h4>More Excel Must-Know Shortcuts</h4>
+        <div class="kbd-row"><div class="action">Save</div><span class="kbd">Ctrl</span>+<span class="kbd">S</span></div>
+        <div class="kbd-row"><div class="action">New workbook</div><span class="kbd">Ctrl</span>+<span class="kbd">N</span></div>
+        <div class="kbd-row"><div class="action">Open workbook</div><span class="kbd">Ctrl</span>+<span class="kbd">O</span></div>
+        <div class="kbd-row"><div class="action">Print</div><span class="kbd">Ctrl</span>+<span class="kbd">P</span></div>
+        <div class="kbd-row"><div class="action">Close</div><span class="kbd">Ctrl</span>+<span class="kbd">W</span></div>
+        <div class="kbd-row"><div class="action">Absolute reference</div><span class="kbd">F4</span></div>
+        <div class="kbd-row"><div class="action">AutoSum</div><span class="kbd">Alt</span>+<span class="kbd">=</span></div>
+        <div class="kbd-row"><div class="action">Recalculate</div><span class="kbd">F9</span></div>
+        <div class="kbd-row"><div class="action">Spell check</div><span class="kbd">F7</span></div>
+        <div class="kbd-row"><div class="action">Filter toggle</div><span class="kbd">Ctrl</span>+<span class="kbd">Shift</span>+<span class="kbd">L</span></div>
+        <div class="kbd-row"><div class="action">Zoom in/out</div><span class="kbd">Ctrl</span>+<span class="kbd">Scroll</span></div>
+        <div class="kbd-row"><div class="action">Fill down</div><span class="kbd">Ctrl</span>+<span class="kbd">D</span></div>
+        <div class="kbd-row"><div class="action">Fill right</div><span class="kbd">Ctrl</span>+<span class="kbd">R</span></div>
+        <div class="kbd-row"><div class="action">Flash Fill</div><span class="kbd">Ctrl</span>+<span class="kbd">E</span></div>
+        <div class="kbd-row"><div class="action">Show formulas</div><span class="kbd">Ctrl</span>+<span class="kbd">`</span></div>
+        <div class="kbd-row"><div class="action">Create table</div><span class="kbd">Ctrl</span>+<span class="kbd">T</span></div>
+        <div class="kbd-row"><div class="action">Name box</div><span class="kbd">Ctrl</span>+<span class="kbd">G</span></div>
+        <div class="kbd-row"><div class="action">Add new sheet</div><span class="kbd">Shift</span>+<span class="kbd">F11</span></div>
+
+        <h4>Mac Differences</h4>
+        <div class="box box-info" style="margin-top:12px;">
+          <div class="box-title">🍎 Mac Users — Ctrl ko Cmd se replace karo</div>
+          <p><span class="kbd">Ctrl</span>+<span class="kbd">C</span> → Mac mein <span class="kbd">⌘</span>+<span class="kbd">C</span></p>
+          <p><span class="kbd">Ctrl</span>+<span class="kbd">Z</span> → Mac mein <span class="kbd">⌘</span>+<span class="kbd">Z</span></p>
+          <p>Absolute ref: Mac mein <span class="kbd">⌘</span>+<span class="kbd">T</span></p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 14: EXCEL VS GOOGLE SHEETS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-red" data-emoji="⚖️">
+    <div class="ch-label">Chapter 14</div>
+    <h2>Excel vs Google Sheets — Full Comparison</h2>
+    <p>Interview mein yeh table yaad karo — dono ke pros &amp; cons clearly samjho</p>
+  </div>
+  <div class="chapter-body">
+
+    <table class="styled-table">
+      <thead><tr><th>Feature</th><th>📗 Microsoft Excel</th><th>📘 Google Sheets</th><th>Winner</th></tr></thead>
+      <tbody>
+        <tr><td>Cost</td><td>Paid (₹4,000–₹7,000/yr)</td><td>Free with Google Account</td><td>🏆 Sheets</td></tr>
+        <tr><td>Internet</td><td>Works offline</td><td>Mostly online (offline possible)</td><td>🏆 Excel</td></tr>
+        <tr><td>Collaboration</td><td>Limited (SharePoint)</td><td>Real-time, multiple users</td><td>🏆 Sheets</td></tr>
+        <tr><td>Row Limit</td><td>10,48,576 rows</td><td>~50 lakh cells</td><td>🏆 Excel</td></tr>
+        <tr><td>Performance (big data)</td><td>Fast even with lakhs of rows</td><td>Slow beyond 50,000 rows</td><td>🏆 Excel</td></tr>
+        <tr><td>Pivot Tables</td><td>Extremely powerful, many options</td><td>Basic pivot tables</td><td>🏆 Excel</td></tr>
+        <tr><td>Charts</td><td>More chart types, better formatting</td><td>Good but fewer options</td><td>🏆 Excel</td></tr>
+        <tr><td>Automation</td><td>VBA Macros (powerful)</td><td>Google Apps Script</td><td>Tie</td></tr>
+        <tr><td>VLOOKUP / Lookup</td><td>VLOOKUP, XLOOKUP, INDEX+MATCH</td><td>Same + QUERY</td><td>🏆 Sheets (QUERY)</td></tr>
+        <tr><td>QUERY Function</td><td>Power Query (different)</td><td>Native QUERY ✅</td><td>🏆 Sheets</td></tr>
+        <tr><td>IMPORTRANGE</td><td>Not available</td><td>Available ✅</td><td>🏆 Sheets</td></tr>
+        <tr><td>Forms Integration</td><td>Manual</td><td>Google Forms auto-connect</td><td>🏆 Sheets</td></tr>
+        <tr><td>Auto Save</td><td>Manual (Ctrl+S)</td><td>Automatic ✅</td><td>🏆 Sheets</td></tr>
+        <tr><td>Version History</td><td>Limited</td><td>Full history, restore any version</td><td>🏆 Sheets</td></tr>
+        <tr><td>Conditional Formatting</td><td>Powerful, icon sets, data bars</td><td>Basic</td><td>🏆 Excel</td></tr>
+        <tr><td>Flash Fill</td><td>Available ✅</td><td>Not available</td><td>🏆 Excel</td></tr>
+        <tr><td>Power Query</td><td>Available ✅</td><td>Not available</td><td>🏆 Excel</td></tr>
+        <tr><td>Mobile Use</td><td>Limited</td><td>Excellent mobile app</td><td>🏆 Sheets</td></tr>
+        <tr><td>Security / Privacy</td><td>More control (local files)</td><td>Cloud — Google servers</td><td>🏆 Excel</td></tr>
+        <tr><td>Best For</td><td>Finance, MIS, large data analysis</td><td>Startups, HR, teams, tracking</td><td>Context-based</td></tr>
+      </tbody>
+    </table>
+
+    <div class="box box-interview">
+      <div class="box-title">🎯 Interview Question</div>
+      <div class="qa-card">
+        <div class="qa-q">Aap Excel choose karoge ya Google Sheets? Kyun?</div>
+        <div class="qa-a">Yeh situation pe depend karta hai. Agar large dataset ho, advanced pivot tables chahiye, ya offline kaam karna ho — toh Excel better hai. Agar team collaboration chahiye, multiple log ek saath kaam karein, ya Google Forms se data aata ho — toh Google Sheets perfect hai. Mujhe dono tools kaam aate hain aur main requirement ke hisaab se choose karta/karti hoon.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 15: REAL COMPANY TASKS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-teal" data-emoji="💼">
+    <div class="ch-label">Chapter 15</div>
+    <h2>Real Company Tasks — Practical Scenarios</h2>
+    <p>Actual office mein kaisa data hota hai aur kaise solve karte hain?</p>
+  </div>
+  <div class="chapter-body">
+
+    <h3>Task 1: Employee Master Database</h3>
+    <div class="spreadsheet">
+      <div style="background:#1a237e;color:white;padding:8px 12px;font-size:12px;">📋 Employee Master — HR Team ke liye</div>
+      <div style="display:grid;grid-template-columns:40px repeat(7,1fr);font-size:11px;">
+        <div class="ss-col-header"></div>
+        <div class="ss-col-header">A — Emp ID</div>
+        <div class="ss-col-header">B — Name</div>
+        <div class="ss-col-header">C — Dept</div>
+        <div class="ss-col-header">D — Joining</div>
+        <div class="ss-col-header">E — Basic</div>
+        <div class="ss-col-header">F — Experience</div>
+        <div class="ss-col-header">G — PF</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(7,1fr);font-size:11px;">
+        <div class="ss-row-num">1</div>
+        <div class="ss-cell header-cell">EMP-001</div>
+        <div class="ss-cell header-cell">Rahul</div>
+        <div class="ss-cell header-cell">HR</div>
+        <div class="ss-cell header-cell">01-Jan-20</div>
+        <div class="ss-cell header-cell">35,000</div>
+        <div class="ss-cell formula-cell">=DATEDIF(D2,TODAY(),"Y")&" Yrs"</div>
+        <div class="ss-cell formula-cell">=ROUND(E2*12%,0)</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px repeat(7,1fr);font-size:11px;">
+        <div class="ss-row-num">2</div>
+        <div class="ss-cell">EMP-002</div>
+        <div class="ss-cell">Priya</div>
+        <div class="ss-cell">Sales</div>
+        <div class="ss-cell">15-Mar-22</div>
+        <div class="ss-cell">42,000</div>
+        <div class="ss-cell result-cell">2 Yrs</div>
+        <div class="ss-cell result-cell">5,040</div>
+      </div>
+    </div>
+
+    <h3>Task 2: Recruitment Pipeline Tracker</h3>
+    <table class="styled-table">
+      <thead><tr><th>Candidate Name</th><th>Position</th><th>Applied Date</th><th>Stage</th><th>Status</th><th>Next Action</th></tr></thead>
+      <tbody>
+        <tr><td>Rohan Gupta</td><td>MIS Executive</td><td>01-Jul-2025</td><td>HR Round</td><td style="background:#fff3e0;">In Process</td><td>=WORKDAY(C2, 3) → 3rd working day</td></tr>
+        <tr><td>Sneha Joshi</td><td>Data Analyst</td><td>28-Jun-2025</td><td>Technical Round</td><td style="background:#e8f5e9;">Selected</td><td>Offer Letter</td></tr>
+        <tr><td>Vivek Shah</td><td>HR Executive</td><td>25-Jun-2025</td><td>Offer</td><td style="background:#ffebee;">Rejected</td><td>Archive</td></tr>
+      </tbody>
+    </table>
+
+    <h3>Task 3: Attendance Tracker</h3>
+    <div class="spreadsheet">
+      <div style="display:grid;grid-template-columns:40px 1fr repeat(6,40px) 1fr 1fr;font-size:11px;">
+        <div class="ss-col-header"></div>
+        <div class="ss-col-header">Name</div>
+        <div class="ss-col-header">1</div>
+        <div class="ss-col-header">2</div>
+        <div class="ss-col-header">3</div>
+        <div class="ss-col-header">4</div>
+        <div class="ss-col-header">5</div>
+        <div class="ss-col-header">...</div>
+        <div class="ss-col-header">Present Days</div>
+        <div class="ss-col-header">Attendance %</div>
+      </div>
+      <div style="display:grid;grid-template-columns:40px 1fr repeat(6,40px) 1fr 1fr;font-size:11px;">
+        <div class="ss-row-num">2</div>
+        <div class="ss-cell">Rahul</div>
+        <div class="ss-cell" style="background:#e8f5e9;color:green;">P</div>
+        <div class="ss-cell" style="background:#e8f5e9;color:green;">P</div>
+        <div class="ss-cell" style="background:#ffebee;color:red;">A</div>
+        <div class="ss-cell" style="background:#e8f5e9;color:green;">P</div>
+        <div class="ss-cell" style="background:#fff3e0;color:orange;">H</div>
+        <div class="ss-cell">...</div>
+        <div class="ss-cell formula-cell">=COUNTIF(C2:AG2,"P")</div>
+        <div class="ss-cell result-cell">=F2/26*100&"%"</div>
+      </div>
+    </div>
+
+    <h3>Task 4: MIS Report Summary</h3>
+    <div class="box box-example">
+      <div class="box-title">📊 Monthly MIS Report — Formulas</div>
+      <table class="styled-table">
+        <thead><tr><th>MIS Metric</th><th>Formula</th></tr></thead>
+        <tbody>
+          <tr><td>Total Headcount</td><td><code>=COUNTA(A2:A1000)</code></td></tr>
+          <tr><td>Active Employees</td><td><code>=COUNTIF(D2:D1000,"Active")</code></td></tr>
+          <tr><td>New Joinings this month</td><td><code>=COUNTIFS(E2:E1000,">="&DATE(YEAR(TODAY()),MONTH(TODAY()),1),E2:E1000,"<="&TODAY())</code></td></tr>
+          <tr><td>Attrition this month</td><td><code>=COUNTIF(F2:F1000,"Resigned")</code></td></tr>
+          <tr><td>Attrition %</td><td><code>=F_Resigned/Total_Start*100</code></td></tr>
+          <tr><td>Total Salary Bill</td><td><code>=SUMIF(D2:D1000,"Active",C2:C1000)</code></td></tr>
+          <tr><td>Avg Salary</td><td><code>=AVERAGEIF(D2:D1000,"Active",C2:C1000)</code></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 16: INTERVIEW QUESTIONS ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-green" data-emoji="🎯">
+    <div class="ch-label">Chapter 16</div>
+    <h2>150+ Interview Questions with Answers</h2>
+    <p>Basic se Advanced — sab levels ke sawaal yahan hain!</p>
+  </div>
+  <div class="chapter-body">
+
+    <h3>🟢 Basic Level Questions</h3>
+
+    <div class="qa-card">
+      <div class="qa-q">Excel mein formula kaise likhte hain?</div>
+      <div class="qa-a">Har formula = (equal sign) se shuru hota hai. Jaise =SUM(A1:A10) ya =VLOOKUP(A2,B:D,2,0). Bina = ke Excel use text maanta hai.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Cell address kya hota hai? Ek example do.</div>
+      <div class="qa-a">Cell address row aur column ka combination hota hai — pehle column letter, phir row number. Jaise A1 (Column A, Row 1), B5 (Column B, Row 5), C10. Yeh Name Box mein dikhta hai.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Relative aur Absolute reference mein difference?</div>
+      <div class="qa-a">Relative (A1) copy karte waqt change hota hai. Absolute ($A$1) $ sign se lock hota hai — copy karne pe nahi badle ga. F4 se $ lagao. Tax rate, fixed multiplier ke liye absolute use karo.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">SUM formula kaise likhein?</div>
+      <div class="qa-a">=SUM(A1:A10) — A1 se A10 tak sab numbers jodega. Ya =SUM(A1,B1,C1) — individual cells. Ya =SUM(A:A) — poori A column.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Excel mein data ko kaise sort karein?</div>
+      <div class="qa-a">Data select karo → Data tab → Sort → Column choose karo → A to Z ya Z to A → OK. Ya header row mein filter lagao (Ctrl+Shift+L) aur dropdown se sort karo.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Freeze Panes kyun use karte hain?</div>
+      <div class="qa-a">Bade data mein scroll karte waqt headers scroll ke saath chale jaate hain. Freeze karne se header hamesha visible rehta hai. View → Freeze Panes → Freeze First Row.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">TRIM kya karta hai?</div>
+      <div class="qa-a">=TRIM(A2) text se extra spaces remove karta hai — leading, trailing, aur multiple middle spaces. Data copy-paste ya form submission se aaye data mein aksar extra spaces hote hain — TRIM se saaf hota hai.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">PROPER function kya karta hai?</div>
+      <div class="qa-a">=PROPER("rahul sharma") → Rahul Sharma. Har word ka pehla letter capital, baaki small karta hai. Employee names aur addresses ke liye use hota hai.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">How to remove duplicates in Excel?</div>
+      <div class="qa-a">Data select karo → Data tab → Remove Duplicates → Kaunsi columns check karni hain wo select karo → OK. Note: Pehle original data ka backup rakho!</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Excel mein filter kaise lagate hain?</div>
+      <div class="qa-a">Header row mein koi bhi cell click karo → Data → Filter (ya Ctrl+Shift+L) → Har column mein dropdown arrow aata hai → Click karke filter choose karo.</div>
+    </div>
+
+    <hr class="fancy">
+    <h3>🟡 Intermediate Level Questions</h3>
+
+    <div class="qa-card">
+      <div class="qa-q">VLOOKUP explain karo with example.</div>
+      <div class="qa-a">VLOOKUP vertically search karke related value return karta hai. Syntax: =VLOOKUP(lookup_value, table_array, col_index, range_lookup). Example: Employee ID se department dhundna: =IFERROR(VLOOKUP(A2, MasterSheet!A:D, 3, 0), "Not Found") — A2=ID, A:D=table, 3=3rd column=Department, 0=exact match, IFERROR handles #N/A.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">IF function ek HR example ke saath explain karo.</div>
+      <div class="qa-a">=IF(C2>=80%, "Eligible", "Not Eligible") — Attendance 80% ya zyada ho to "Eligible" warna "Not Eligible". Nested: =IF(B2>=50000,"Grade A",IF(B2>=35000,"Grade B","Grade C")) — salary se grade determine karna.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">COUNTIF aur COUNTIFS mein difference?</div>
+      <div class="qa-a">COUNTIF ek condition: =COUNTIF(B:B,"HR") — HR employees count. COUNTIFS multiple: =COUNTIFS(B:B,"HR",D:D,"Active") — HR ke Active employees. COUNTIFS mein pairs mein conditions dete hain.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Employee ki age ya experience kaise calculate karein?</div>
+      <div class="qa-a">DATEDIF use karo: =DATEDIF(B2,TODAY(),"Y")&" Years "&DATEDIF(B2,TODAY(),"YM")&" Months" — B2 mein joining/DOB date, TODAY() end date, "Y" years, "YM" remaining months.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Pivot Table kaise banate hain?</div>
+      <div class="qa-a">Data mein koi bhi cell click karo → Insert → PivotTable → New Worksheet → OK → Right side field list se fields drag karo — Department to Rows, Salary to Values (Sum), Status to Filters → Report ready!</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">SUMIF formula explain karo.</div>
+      <div class="qa-a">=SUMIF(range, criteria, sum_range). Example: HR department ki total salary: =SUMIF(B:B,"HR",C:C) — B column check karo "HR" ke liye, matching rows ki C column (salary) sum karo.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">IFERROR kyun lagate hain VLOOKUP ke saath?</div>
+      <div class="qa-a">VLOOKUP agar value nahi dhundh paata to #N/A error deta hai — jo unprofessional dikhta hai. IFERROR=IFERROR(VLOOKUP(...),"Not Found") se error ki jagah "Not Found" aata hai — reports professional lagti hain.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Conditional Formatting kya hai? Example do.</div>
+      <div class="qa-a">Conditional Formatting cells ko automatically color karta hai condition ke basis pe. Home → Conditional Formatting → Highlight Cell Rules → Greater Than → 50000 → Green fill. Salary column mein 50k+ wale automatically green ho jaate hain.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">NETWORKDAYS formula kab use karte hain?</div>
+      <div class="qa-a">Working days count karne ke liye. =NETWORKDAYS("01-Jan-2025","31-Jan-2025") — January 2025 mein weekends exclude karke working days. Holidays exclude karne ke liye third argument mein holiday dates ki range do.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">CONCATENATE aur &amp; operator mein kya antar hai?</div>
+      <div class="qa-a">Dono cells jodne ke liye use hote hain: =CONCATENATE(A2," ",B2) = =A2&" "&B2. Lekin TEXTJOIN zyada advanced hai — separator aur empty cells ignore karne ka option deta hai: =TEXTJOIN(" ",TRUE,A2,B2,C2).</div>
+    </div>
+
+    <hr class="fancy">
+    <h3>🔴 Advanced Level Questions</h3>
+
+    <div class="qa-card">
+      <div class="qa-q">INDEX MATCH VLOOKUP se better kyun hai?</div>
+      <div class="qa-a">Teen karan: 1) Left search — VLOOKUP sirf right mein dhundta, INDEX+MATCH kisi bhi direction mein. 2) Column insert/delete hone pe VLOOKUP ka col_index break hota hai, INDEX+MATCH ka nahi. 3) Large data mein INDEX+MATCH faster hai. Formula: =INDEX(C:C,MATCH(F2,A:A,0)).</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">XLOOKUP kya hai aur VLOOKUP se better kyun?</div>
+      <div class="qa-a">XLOOKUP (Excel 365+) VLOOKUP ka modern replacement hai: 1) Left/right/up/down — kisi bhi direction mein search. 2) Built-in "if not found" parameter. 3) Multiple columns return kar sakta hai. 4) Default exact match. Syntax: =XLOOKUP(value, lookup_array, return_array, "Not Found").</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">QUERY function kya hai Google Sheets mein?</div>
+      <div class="qa-a">QUERY SQL-like language se data analyze karta hai. =QUERY(A:D,"SELECT B, SUM(C) WHERE D='Active' GROUP BY B ORDER BY SUM(C) DESC LABEL SUM(C) 'Total Salary'",1) — Active employees ki department-wise total salary descending order mein.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Pivot Table mein Calculated Field kya hota hai?</div>
+      <div class="qa-a">Existing pivot fields se custom formula banana — bina original data mein column add kiye. PivotTable Analyze → Fields, Items → Calculated Field → Name: "Annual PF" → Formula: =Salary*12% → Add. Ab Annual PF directly pivot mein dikhega.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Large dataset mein Excel slow ho raha hai — kya karein?</div>
+      <div class="qa-a">1. Volatile formulas (TODAY, NOW, RAND) kam karo. 2. VLOOKUP ki jagah INDEX+MATCH use karo. 3. Entire column references (A:A) ki jagah specific range (A2:A1000) use karo. 4. Unnecessary conditional formatting hatao. 5. Manual calculation mode on karo (Formulas → Calculation Options → Manual).</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">ARRAYFORMULA kya karta hai? (Google Sheets)</div>
+      <div class="qa-a">Ek formula ko poori range pe apply karta hai — har row mein separately likhne ki zaroorat nahi. =ARRAYFORMULA(A2:A100*B2:B100) — poore column ke products ek saath. =ARRAYFORMULA(IF(C2:C100="Active","✅","❌")) — poori column mein status icons.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">IMPORTRANGE kaise use karte hain? Permission issue kaise solve karo?</div>
+      <div class="qa-a">=IMPORTRANGE("sheet_url","Sheet1!A1:D100"). Pehli baar use mein cell pe click karo → "Allow Access" button aayega → click karo → permission mil jaati hai. Agar permission deny ho to: source sheet owner ko access dene ke liye bolo ya Share settings check karo.</div>
+    </div>
+
+    <hr class="fancy">
+    <h3>🎭 Scenario-Based Questions</h3>
+
+    <div class="qa-card">
+      <div class="qa-q">Aapke paas 5000 employees ka data hai. HR Manager ne kaha ki department-wise attrition report 1 ghante mein chahiye. Aap kaise karenge?</div>
+      <div class="qa-a">Step 1: Data check — sorting, filter, duplicates remove. Step 2: "Status" column check — Active/Resigned. Step 3: Pivot Table insert — Department to Rows, Status to Columns, Count to Values. Step 4: Attrition % = Resigned/Total*100. Step 5: Column Chart banana. Step 6: Slicer se Month filter add karo. Total time: 15-20 minutes.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">VLOOKUP #N/A error aa raha hai — kyun aur kaise fix karein?</div>
+      <div class="qa-a">4 common reasons: 1) Extra spaces — TRIM lagao: =VLOOKUP(TRIM(A2),...). 2) Exact match nahi mila — confirm 0 fourth argument hai. 3) Value column first mein nahi — table restructure karo ya INDEX+MATCH use karo. 4) Number text ke roop mein store — VALUE() function use karo. IFERROR se error handle karo.</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">Recruitment tracker Google Sheets mein banana hai jisme 5 HR log ek saath kaam karein. Aap kya recommend karoge?</div>
+      <div class="qa-a">Google Sheets best choice hai: 1) Shared spreadsheet banao. 2) IMPORTRANGE se HR Master se data pull karo. 3) Data Validation — Dropdown se Stage aur Status. 4) Conditional Formatting — Selected=Green, Rejected=Red. 5) Filter views — har HR apna filter save kare. 6) Pivot Table — monthly summary. 7) Google Forms se candidate info directly collect karo.</div>
+    </div>
+
+    <hr class="fancy">
+    <h3>💼 HR Round Questions</h3>
+
+    <div class="qa-card">
+      <div class="qa-q">Aapne Excel ya Google Sheets mein jo sabse complex kaam kiya — wo batao.</div>
+      <div class="qa-a">[Apna real project batao, ya yeh template use karo:] "Maine ek recruitment dashboard banaya tha jisme 1200+ candidates ka data tha. VLOOKUP se candidate status pull kiya, SUMIFS se monthly pipeline count kiya, Pivot Table se department-wise analysis ki aur slicers se interactive dashboard banaya. Har Monday ye report automatically update hoti thi."</div>
+    </div>
+    <div class="qa-card">
+      <div class="qa-q">MIS Executive ka kaam kya hota hai?</div>
+      <div class="qa-a">MIS (Management Information System) Executive company ke different departments ka data collect, analyze aur report karta hai. Daily/weekly/monthly reports — attendance, sales, HR metrics, operational KPIs. Excel ya Google Sheets mein dashboards, pivot reports, charts banata hai. Management ko decision-making ke liye data provide karta hai.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== CHAPTER 17: PRACTICE ====================== -->
+<div class="chapter container">
+  <div class="chapter-header ch-pink" data-emoji="📝">
+    <div class="ch-label">Chapter 17</div>
+    <h2>Practice Questions — Hands-On Learning</h2>
+    <p>Sirf padhne se nahi seekhoge — practice karo aur master bano!</p>
+  </div>
+  <div class="chapter-body">
+
+    <h3>🔢 50 Formula Practice Questions</h3>
+    <table class="styled-table">
+      <thead><tr><th>#</th><th>Sawaal</th><th>Formula (Answer)</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>A1:A20 ka total</td><td><code>=SUM(A1:A20)</code></td></tr>
+        <tr><td>2</td><td>B1:B30 ka average</td><td><code>=AVERAGE(B1:B30)</code></td></tr>
+        <tr><td>3</td><td>Sabse badi salary (C column)</td><td><code>=MAX(C2:C100)</code></td></tr>
+        <tr><td>4</td><td>Kitne employees ka name fill hai</td><td><code>=COUNTA(A2:A200)</code></td></tr>
+        <tr><td>5</td><td>Kitni rows mein department missing hai</td><td><code>=COUNTBLANK(B2:B200)</code></td></tr>
+        <tr><td>6</td><td>35000 salary round to 100</td><td><code>=ROUND(35467,-2)</code></td></tr>
+        <tr><td>7</td><td>Salary = Basic × 1.25, round to nearest 50</td><td><code>=ROUND(B2*1.25/50,0)*50</code></td></tr>
+        <tr><td>8</td><td>Employee ki age (DOB B2 mein)</td><td><code>=DATEDIF(B2,TODAY(),"Y")&" Years"</code></td></tr>
+        <tr><td>9</td><td>Jan 2025 mein working days</td><td><code>=NETWORKDAYS("1-Jan-25","31-Jan-25")</code></td></tr>
+        <tr><td>10</td><td>"EMP-HR-001" se "HR" extract karo</td><td><code>=MID(A2,5,2)</code></td></tr>
+        <tr><td>11</td><td>Name ka pehla word (first name)</td><td><code>=LEFT(A2,FIND(" ",A2)-1)</code></td></tr>
+        <tr><td>12</td><td>HR department count karo</td><td><code>=COUNTIF(B:B,"HR")</code></td></tr>
+        <tr><td>13</td><td>HR ka total salary</td><td><code>=SUMIF(B:B,"HR",C:C)</code></td></tr>
+        <tr><td>14</td><td>Active HR employees count</td><td><code>=COUNTIFS(B:B,"HR",D:D,"Active")</code></td></tr>
+        <tr><td>15</td><td>Active HR average salary</td><td><code>=AVERAGEIFS(C:C,B:B,"HR",D:D,"Active")</code></td></tr>
+        <tr><td>16</td><td>ID se department dhundho (VLOOKUP)</td><td><code>=IFERROR(VLOOKUP(A2,Sheet2!A:D,3,0),"Not Found")</code></td></tr>
+        <tr><td>17</td><td>Salary 50k+ ho to "Senior" warna "Junior"</td><td><code>=IF(C2>=50000,"Senior","Junior")</code></td></tr>
+        <tr><td>18</td><td>Salary AND Active dono ho to "Bonus"</td><td><code>=IF(AND(C2>40000,D2="Active"),"Bonus","No Bonus")</code></td></tr>
+        <tr><td>19</td><td>Full name (first + last)</td><td><code>=TEXTJOIN(" ",TRUE,A2,B2)</code></td></tr>
+        <tr><td>20</td><td>Name UPPERCASE karo</td><td><code>=UPPER(A2)</code></td></tr>
+        <tr><td>21</td><td>Email lowercase karo</td><td><code>=LOWER(A2)</code></td></tr>
+        <tr><td>22</td><td>Extra spaces hatao</td><td><code>=TRIM(A2)</code></td></tr>
+        <tr><td>23</td><td>Joining year nikalo</td><td><code>=YEAR(D2)</code></td></tr>
+        <tr><td>24</td><td>Experience 5+ years wale count</td><td><code>=COUNTIF(F:F,"&gt;=5")</code></td></tr>
+        <tr><td>25</td><td>Salary column mein 35000 replace karo 40000 se</td><td><code>=SUBSTITUTE(C2,"35000","40000")</code></td></tr>
+        <tr><td>26</td><td>IFERROR use karke VLOOKUP error hide karo</td><td><code>=IFERROR(VLOOKUP(A2,B:D,2,0),"")</code></td></tr>
+        <tr><td>27</td><td>3 months baad ki date</td><td><code>=EDATE(TODAY(),3)</code></td></tr>
+        <tr><td>28</td><td>Month ka last day</td><td><code>=EOMONTH(TODAY(),0)</code></td></tr>
+        <tr><td>29</td><td>Salary ka 12% PF (round karo)</td><td><code>=ROUND(C2*12%,0)</code></td></tr>
+        <tr><td>30</td><td>Grade A,B,C,D salary ke basis pe</td><td><code>=IFS(C2>=60000,"A",C2>=40000,"B",C2>=25000,"C",TRUE,"D")</code></td></tr>
+        <tr><td>31</td><td>INDEX+MATCH se department dhundho</td><td><code>=INDEX(C:C,MATCH(F2,A:A,0))</code></td></tr>
+        <tr><td>32</td><td>Top 5 highest salary employees</td><td><code>=LARGE(C2:C100,1)</code> to <code>=LARGE(C2:C100,5)</code></td></tr>
+        <tr><td>33</td><td>5th se 3rd character nikalo</td><td><code>=MID(A2,5,3)</code></td></tr>
+        <tr><td>34</td><td>50,000 se zyada salary count</td><td><code>=COUNTIF(C:C,"&gt;50000")</code></td></tr>
+        <tr><td>35</td><td>Text mein "Manager" hai ya nahi</td><td><code>=IF(ISNUMBER(SEARCH("Manager",A2)),"Yes","No")</code></td></tr>
+        <tr><td>36</td><td>Random 4-digit number generate karo</td><td><code>=RANDBETWEEN(1000,9999)</code></td></tr>
+        <tr><td>37</td><td>Date ko "DD-Mon-YYYY" format mein dikhao</td><td><code>=TEXT(A2,"DD-MMM-YYYY")</code></td></tr>
+        <tr><td>38</td><td>Weekday nikalo (Monday etc.)</td><td><code>=TEXT(A2,"DDDD")</code></td></tr>
+        <tr><td>39</td><td>Salary mein 10% hike add karo</td><td><code>=C2*1.1</code></td></tr>
+        <tr><td>40</td><td>Total package (monthly to annual)</td><td><code>=C2*12</code></td></tr>
+        <tr><td>41</td><td>Notice period end date (90 days)</td><td><code>=WORKDAY(TODAY(),90)</code></td></tr>
+        <tr><td>42</td><td>Department ki entry first occurrence</td><td><code>=MATCH("HR",B:B,0)</code></td></tr>
+        <tr><td>43</td><td>N/A error handle karo</td><td><code>=IFERROR(formula,"Not Available")</code></td></tr>
+        <tr><td>44</td><td>Percentage attendance (Present/Total)</td><td><code>=E2/26*100</code> then format as %</td></tr>
+        <tr><td>45</td><td>Name se initials nikalo</td><td><code>=LEFT(A2,1)&"."&LEFT(B2,1)&"."</code></td></tr>
+        <tr><td>46</td><td>Unique departments list (Google Sheets)</td><td><code>=UNIQUE(B2:B100)</code></td></tr>
+        <tr><td>47</td><td>Active employees filter karo (Google Sheets)</td><td><code>=FILTER(A2:D100,D2:D100="Active")</code></td></tr>
+        <tr><td>48</td><td>HR + Active filter (Google Sheets)</td><td><code>=FILTER(A2:D100,(B2:B100="HR")*(D2:D100="Active"))</code></td></tr>
+        <tr><td>49</td><td>Department-wise count QUERY se</td><td><code>=QUERY(A:D,"SELECT B, COUNT(A) GROUP BY B",1)</code></td></tr>
+        <tr><td>50</td><td>Cross-sheet data import</td><td><code>=IMPORTRANGE("url","Sheet1!A1:D100")</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>📊 25 Pivot Table Practice Questions</h3>
+    <div class="practice-box">
+      <h4>Dataset: Employee Database (1000 rows)</h4>
+      <ol>
+        <li>Department-wise total employee count</li>
+        <li>Department-wise average salary</li>
+        <li>City-wise total headcount</li>
+        <li>Department x Status (Active/Inactive) cross-tab</li>
+        <li>Top 10 highest paid employees</li>
+        <li>Year-wise joining trend (date grouping)</li>
+        <li>Month-wise attrition count</li>
+        <li>Gender ratio by department</li>
+        <li>Department-wise salary % of total</li>
+        <li>Calculated field: Annual CTC = Monthly × 12</li>
+        <li>Calculated field: PF = Basic × 12%</li>
+        <li>Designation-wise average experience</li>
+        <li>Education-wise salary comparison</li>
+        <li>Department + City cross analysis</li>
+        <li>Age group distribution (grouping feature)</li>
+        <li>Q1/Q2/Q3/Q4 quarterly joining (date grouping)</li>
+        <li>Running total of joinings (cumulative)</li>
+        <li>Rank employees by salary within department</li>
+        <li>Pivot chart: bar chart from department count</li>
+        <li>Add slicer for Department</li>
+        <li>Add timeline for joining date</li>
+        <li>Count of employees per manager</li>
+        <li>Experience bucket: 0-2 yrs, 2-5, 5-10, 10+</li>
+        <li>Department-wise min aur max salary</li>
+        <li>Turnover report: joined vs left per month</li>
+      </ol>
+    </div>
+
+    <h3>🎛️ 10 Dashboard Tasks</h3>
+    <div class="grid-2">
+      <div class="box box-info">
+        <div class="box-title">📊 Task 1: HR Dashboard</div>
+        <ul>
+          <li>Total Headcount card</li>
+          <li>Department-wise chart</li>
+          <li>Attrition % this month</li>
+          <li>Gender ratio donut chart</li>
+          <li>New joinings this month</li>
+        </ul>
+      </div>
+      <div class="box box-info">
+        <div class="box-title">📊 Task 2: Recruitment Dashboard</div>
+        <ul>
+          <li>Total applications</li>
+          <li>Stage-wise funnel chart</li>
+          <li>Position-wise pipeline</li>
+          <li>This week interviews</li>
+          <li>Offer acceptance rate</li>
+        </ul>
+      </div>
+      <div class="box box-tip">
+        <div class="box-title">📊 Task 3: MIS Dashboard</div>
+        <ul>
+          <li>Daily attendance %</li>
+          <li>Late arrivals count</li>
+          <li>Leave summary</li>
+          <li>OT hours this week</li>
+          <li>Productivity trend</li>
+        </ul>
+      </div>
+      <div class="box box-tip">
+        <div class="box-title">📊 Task 4: Placement Dashboard</div>
+        <ul>
+          <li>Total placed students</li>
+          <li>Company-wise count</li>
+          <li>Package range analysis</li>
+          <li>Branch-wise % placed</li>
+          <li>Month-wise trend</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ====================== FINAL CHAPTER: CHEAT SHEET ====================== -->
+<div class="chapter container">
+  <div class="chapter-header" style="background:linear-gradient(135deg,#1a237e 0%,#0097a7 100%);" data-emoji="📋">
+    <div class="ch-label">Final Chapter</div>
+    <h2>🏆 Cheat Sheet &amp; Quick Revision</h2>
+    <p>Interview se pehle yahan se revise karo — last minute preparation!</p>
+  </div>
+  <div class="chapter-body">
+
+    <div class="cheat-grid">
+      <div class="cheat-section">
+        <div class="cheat-section-header" style="background:linear-gradient(135deg,#1a237e,#283593);">🔢 Basic Formulas</div>
+        <div class="cheat-section-body">
+          <div class="cheat-item"><span class="func">=SUM(A1:A10)</span><span class="desc">Numbers jodhna</span></div>
+          <div class="cheat-item"><span class="func">=AVERAGE(A1:A10)</span><span class="desc">Average</span></div>
+          <div class="cheat-item"><span class="func">=MAX(A1:A10)</span><span class="desc">Sabse bada</span></div>
+          <div class="cheat-item"><span class="func">=MIN(A1:A10)</span><span class="desc">Sabse chota</span></div>
+          <div class="cheat-item"><span class="func">=COUNT(A1:A10)</span><span class="desc">Numbers count</span></div>
+          <div class="cheat-item"><span class="func">=COUNTA(A1:A10)</span><span class="desc">Non-empty count</span></div>
+          <div class="cheat-item"><span class="func">=COUNTBLANK(A:A)</span><span class="desc">Empty cells</span></div>
+          <div class="cheat-item"><span class="func">=ROUND(A1,2)</span><span class="desc">Round karna</span></div>
+        </div>
+      </div>
+
+      <div class="cheat-section">
+        <div class="cheat-section-header" style="background:linear-gradient(135deg,#1565c0,#1976d2);">🔍 Lookup Formulas</div>
+        <div class="cheat-section-body">
+          <div class="cheat-item"><span class="func">=VLOOKUP(val,tbl,n,0)</span><span class="desc">Vertical search</span></div>
+          <div class="cheat-item"><span class="func">=HLOOKUP(val,tbl,n,0)</span><span class="desc">Horizontal search</span></div>
+          <div class="cheat-item"><span class="func">=XLOOKUP(val,look,ret)</span><span class="desc">Modern lookup</span></div>
+          <div class="cheat-item"><span class="func">=INDEX(arr,row,col)</span><span class="desc">Position se value</span></div>
+          <div class="cheat-item"><span class="func">=MATCH(val,arr,0)</span><span class="desc">Value ki position</span></div>
+          <div class="cheat-item"><span class="func">=INDEX(C:C,MATCH(F2,A:A,0))</span><span class="desc">Power combo</span></div>
+          <div class="cheat-item"><span class="func">=IFERROR(VLOOKUP(...),"NF")</span><span class="desc">Error handle</span></div>
+        </div>
+      </div>
+
+      <div class="cheat-section">
+        <div class="cheat-section-header" style="background:linear-gradient(135deg,#1b5e20,#2e7d32);">🔀 Logical Formulas</div>
+        <div class="cheat-section-body">
+          <div class="cheat-item"><span class="func">=IF(cond,T,F)</span><span class="desc">Condition check</span></div>
+          <div class="cheat-item"><span class="func">=IFS(c1,r1,c2,r2)</span><span class="desc">Multiple IF</span></div>
+          <div class="cheat-item"><span class="func">=AND(c1,c2)</span><span class="desc">Sab true?</span></div>
+          <div class="cheat-item"><span class="func">=OR(c1,c2)</span><span class="desc">Koi ek true?</span></div>
+          <div class="cheat-item"><span class="func">=NOT(condition)</span><span class="desc">Opposite</span></div>
+          <div class="cheat-item"><span class="func">=IFERROR(formula,val)</span><span class="desc">Error handle</span></div>
+          <div class="cheat-item"><span class="func">=SWITCH(val,c1,r1)</span><span class="desc">Multiple match</span></div>
+        </div>
+      </div>
+
+      <div class="cheat-section">
+        <div class="cheat-section-header" style="background:linear-gradient(135deg,#e65100,#f57f17);">📊 Conditional Formulas</div>
+        <div class="cheat-section-body">
+          <div class="cheat-item"><span class="func">=COUNTIF(range,crit)</span><span class="desc">Condition count</span></div>
+          <div class="cheat-item"><span class="func">=COUNTIFS(r1,c1,r2,c2)</span><span class="desc">Multi condition</span></div>
+          <div class="cheat-item"><span class="func">=SUMIF(range,crit,sum)</span><span class="desc">Condition sum</span></div>
+          <div class="cheat-item"><span class="func">=SUMIFS(sum,r1,c1,r2,c2)</span><span class="desc">Multi sum</span></div>
+          <div class="cheat-item"><span class="func">=AVERAGEIF(r,c,avg)</span><span class="desc">Condition avg</span></div>
+          <div class="cheat-item"><span class="func">=AVERAGEIFS(...)</span><span class="desc">Multi avg</span></div>
+        </div>
+      </div>
+
+      <div class="cheat-section">
+        <div class="cheat-section-header" style="background:linear-gradient(135deg,#4a148c,#7b1fa2);">🔤 Text Formulas</div>
+        <div class="cheat-section-body">
+          <div class="cheat-item"><span class="func">=LEFT(text,n)</span><span class="desc">Left se n chars</span></div>
+          <div class="cheat-item"><span class="func">=RIGHT(text,n)</span><span class="desc">Right se n chars</span></div>
+          <div class="cheat-item"><span class="func">=MID(text,start,n)</span><span class="desc">Beech se chars</span></div>
+          <div class="cheat-item"><span class="func">=LEN(text)</span><span class="desc">Length/count</span></div>
+          <div class="cheat-item"><span class="func">=TRIM(text)</span><span class="desc">Spaces hatao</span></div>
+          <div class="cheat-item"><span class="func">=PROPER(text)</span><span class="desc">Title Case</span></div>
+          <div class="cheat-item"><span class="func">=SUBSTITUTE(t,o,n)</span><span class="desc">Replace text</span></div>
+          <div class="cheat-item"><span class="func">=TEXTJOIN(" ",1,A,B)</span><span class="desc">Join cells</span></div>
+        </div>
+      </div>
+
+      <div class="cheat-section">
+        <div class="cheat-section-header" style="background:linear-gradient(135deg,#006064,#0097a7);">📅 Date Formulas</div>
+        <div class="cheat-section-body">
+          <div class="cheat-item"><span class="func">=TODAY()</span><span class="desc">Aaj ki date</span></div>
+          <div class="cheat-item"><span class="func">=NOW()</span><span class="desc">Date + Time</span></div>
+          <div class="cheat-item"><span class="func">=YEAR(date)</span><span class="desc">Year nikalo</span></div>
+          <div class="cheat-item"><span class="func">=MONTH(date)</span><span class="desc">Month nikalo</span></div>
+          <div class="cheat-item"><span class="func">=DAY(date)</span><span class="desc">Day nikalo</span></div>
+          <div class="cheat-item"><span class="func">=DATEDIF(s,e,"Y")</span><span class="desc">Experience</span></div>
+          <div class="cheat-item"><span class="func">=NETWORKDAYS(s,e)</span><span class="desc">Working days</span></div>
+          <div class="cheat-item"><span class="func">=EOMONTH(d,0)</span><span class="desc">Month last day</span></div>
+        </div>
+      </div>
+
+      <div class="cheat-section">
+        <div class="cheat-section-header" style="background:linear-gradient(135deg,#217346,#34a853);">🌐 Google Sheets Only</div>
+        <div class="cheat-section-body">
+          <div class="cheat-item"><span class="func">=QUERY(data,query,h)</span><span class="desc">SQL-like query</span></div>
+          <div class="cheat-item"><span class="func">=FILTER(range,cond)</span><span class="desc">Dynamic filter</span></div>
+          <div class="cheat-item"><span class="func">=SORT(range,col,asc)</span><span class="desc">Sort karna</span></div>
+          <div class="cheat-item"><span class="func">=UNIQUE(range)</span><span class="desc">Unique values</span></div>
+          <div class="cheat-item"><span class="func">=IMPORTRANGE(url,rng)</span><span class="desc">Sheet import</span></div>
+          <div class="cheat-item"><span class="func">=ARRAYFORMULA(...)</span><span class="desc">Bulk formula</span></div>
+          <div class="cheat-item"><span class="func">=SPARKLINE(range)</span><span class="desc">Mini chart</span></div>
+        </div>
+      </div>
+
+      <div class="cheat-section">
+        <div class="cheat-section-header" style="background:linear-gradient(135deg,#880e4f,#c2185b);">⌨️ Top Shortcuts</div>
+        <div class="cheat-section-body">
+          <div class="cheat-item"><span class="func">Ctrl+C / V / X</span><span class="desc">Copy/Paste/Cut</span></div>
+          <div class="cheat-item"><span class="func">Ctrl+Z / Y</span><span class="desc">Undo/Redo</span></div>
+          <div class="cheat-item"><span class="func">Ctrl+F / H</span><span class="desc">Find/Replace</span></div>
+          <div class="cheat-item"><span class="func">F4</span><span class="desc">Absolute ref $</span></div>
+          <div class="cheat-item"><span class="func">Alt + =</span><span class="desc">AutoSum</span></div>
+          <div class="cheat-item"><span class="func">Ctrl+Shift+L</span><span class="desc">Filter toggle</span></div>
+          <div class="cheat-item"><span class="func">Ctrl+T</span><span class="desc">Create table</span></div>
+          <div class="cheat-item"><span class="func">Ctrl+E</span><span class="desc">Flash Fill</span></div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="fancy">
+    <h3>💡 Last-Minute Interview Tips</h3>
+    <div class="grid-2">
+      <div>
+        <div class="box box-tip">
+          <div class="box-title">✅ DO — Yeh Zaroor Karo</div>
+          <ul class="checklist">
+            <li>VLOOKUP ke saath IFERROR hamesha lagao</li>
+            <li>Fixed values ke liye $ (F4) use karo</li>
+            <li>Data validate karo pehle — TRIM, CLEAN</li>
+            <li>Backup rakho pehle processing se</li>
+            <li>Column headers hamesha row 1 mein rakho</li>
+            <li>Pivot Table mein date grouping use karo</li>
+            <li>Formulas explain karo step by step</li>
+            <li>Dono tools ka naam lo — Excel + GSheets</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="box box-danger">
+          <div class="box-title">❌ DON'T — Yeh Galti Mat Karo</div>
+          <ul>
+            <li>❌ Text mein quotes nahi lagana: =IF(A1=Active...)</li>
+            <li>❌ VLOOKUP mein range_lookup khali chhodna (default TRUE bura)</li>
+            <li>❌ DATEDIF mein start se end chota hona</li>
+            <li>❌ Merge cells pe filter lagana — kaam nahi karta</li>
+            <li>❌ Poori column select karna chota data pe (slow)</li>
+            <li>❌ Original data modify karna bina backup ke</li>
+            <li>❌ Circular reference banana</li>
+            <li>❌ Pivot table refresh karna bhool jana</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr class="fancy">
+
+    <div class="box box-cheat">
+      <div class="box-title">🏆 One-Page Summary — Yeh Yaad Rakhein</div>
+      <div class="grid-3" style="margin-top:12px;">
+        <div>
+          <strong style="color:#90caf9;">📌 Most Asked Formulas</strong>
+          <ul style="margin-top:8px;">
+            <li>VLOOKUP + IFERROR</li>
+            <li>IF / IFS / Nested IF</li>
+            <li>COUNTIF / SUMIF</li>
+            <li>DATEDIF (Experience)</li>
+            <li>INDEX + MATCH</li>
+            <li>TRIM / PROPER</li>
+          </ul>
+        </div>
+        <div>
+          <strong style="color:#90caf9;">📊 Pivot Table Key Points</strong>
+          <ul style="margin-top:8px;">
+            <li>Rows = Left labels</li>
+            <li>Columns = Top headers</li>
+            <li>Values = Numbers</li>
+            <li>Filters = Report filter</li>
+            <li>Refresh after data change</li>
+            <li>Calculated field = custom formula</li>
+          </ul>
+        </div>
+        <div>
+          <strong style="color:#90caf9;">🎯 Interview Strategy</strong>
+          <ul style="margin-top:8px;">
+            <li>Real examples do hamesha</li>
+            <li>VLOOKUP full explain karo</li>
+            <li>Pivot Table confidently batao</li>
+            <li>Dono tools mention karo</li>
+            <li>IFERROR banao pro</li>
+            <li>Practice: 1 hr daily for 2 days</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align:center;margin-top:60px;padding:40px;background:linear-gradient(135deg,#1a237e,#0097a7);border-radius:20px;color:white;">
+      <div style="font-size:50px;margin-bottom:16px;">🎉</div>
+      <h3 style="color:white;font-size:24px;margin-bottom:8px;">Congratulations!</h3>
+      <p style="color:rgba(255,255,255,0.85);font-size:15px;max-width:500px;margin:0 auto;">
+        Aapne yeh poora guide padh liya! Ab practice karo, formulas try karo, aur apna interview confidently do. <br><br>
+        <strong>All the Best! 🚀</strong>
+      </p>
+      <div style="margin-top:24px;display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <div style="background:rgba(255,255,255,0.15);padding:10px 20px;border-radius:10px;font-size:13px;">✅ Formulas Practice Karo</div>
+        <div style="background:rgba(255,255,255,0.15);padding:10px 20px;border-radius:10px;font-size:13px;">📊 Pivot Table Banao</div>
+        <div style="background:rgba(255,255,255,0.15);padding:10px 20px;border-radius:10px;font-size:13px;">🎯 Mock Interview Do</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== FLOATING BACK TO TOP ===== -->
+<div style="position:fixed;bottom:30px;right:30px;z-index:999;" class="no-print">
+  <a href="#" style="background:linear-gradient(135deg,#1a237e,#0097a7);color:white;width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 15px rgba(0,0,0,0.3);font-size:20px;" title="Back to top">↑</a>
+</div>
+
+</body>
+</html>
